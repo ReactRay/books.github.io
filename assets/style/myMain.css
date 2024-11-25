@@ -1,0 +1,191 @@
+*{
+  margin: 0;
+  padding:0;
+  box-sizing: border-box;
+}
+
+.small-container{
+  padding: 10px;
+  line-height: 1.6rem;
+}
+
+ .btn{
+  border: none;
+  margin: 10px;
+  margin-right: 10px;
+  padding:4px 6px;
+  background-color: var(--nes);
+  font-size: 1.4rem;
+  font-family: cursive;
+  border-radius: 8px;
+
+}
+.btn:hover{
+  background-color: var(--espresso);
+  color: var(--light);
+}
+a{
+  color: var(--light);
+  text-decoration: none;
+  margin: 0 10px;
+  width: 50px;
+
+}
+a:hover{
+
+  font-weight: 900;
+}
+h1{
+      font-family: "Edu AU VIC WA NT Pre", cursive;
+      color: var(--turk);
+
+}
+
+
+.nav{
+    text-decoration: none;
+  color: var(--turk);
+  font-weight: 700;
+}
+
+.nav:hover{
+   text-decoration: underline;
+   color:var(--espresso);
+  font-weight: 800;
+  
+}
+/* main colors */
+
+.active{
+  text-decoration: underline;
+  color: var(--espresso);
+  font-weight: 900;
+  font-size: large;
+}
+
+:root{
+  --light: #E4E0E1;
+  --nes: #D6C0B3;
+  --espresso: #AB886D;
+  --turk: #333;
+  
+}
+
+body{
+  background-color: var(--espresso);
+  color: var(--light);
+  font-family: cursive;
+  font-weight: 100;
+  line-height: 1.6rem;
+}
+
+
+.header-flex{
+  background-color: var(--turk);
+  padding: 20px 50px;
+    display: flex;
+    justify-content: space-between;
+  align-items: center;
+  color: var(--nes);
+    box-shadow: 4px 5px 10px var(--turk);
+    font-family: "Edu AU VIC WA NT Pre", cursive;
+
+}
+.header-flex span{
+  color:var(--espresso);
+  
+}
+.nav-flex{
+  display:flex;
+  gap: 20px;
+  color: #D6C0B3;
+  padding:10px;
+
+}
+
+.container {
+  max-width: 1600px;
+  padding: 50px;
+  margin: 0 auto;
+  
+
+
+}
+
+.container h1{
+  font-size: 3rem;
+  margin-bottom: 20px;
+  color: var(--turk);
+}
+
+.home-flex{
+
+  border-radius: 10px;
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  padding:30px;
+  background-color: #333;
+  text-align: center;
+    box-shadow: 4px 5px 20px var(--turk);
+ 
+}
+.home-box{
+  padding: 20px;
+  background-color: var(--light);
+  box-shadow: 5px 4px 20px var(--light);
+}
+
+
+
+img{
+  margin-top: 20px;
+  max-width: 500px;
+  height: 500px;
+}
+
+.form-flex{
+  background-color: var(--turk);
+  width: 100%;
+  color: var(--nes);
+  padding: 20px;
+  border-radius: 8px;
+   box-shadow: 2px 3px 20px var(--turk);
+   display: flex;
+  
+}
+
+input{
+  border: none;
+  border-radius: 8px;
+  border-bottom: #493628 solid 1px;
+  background-color:var(--light);
+  padding: 8px;
+  margin: 10px;
+}
+
+.book-flex{
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  gap: 20px;
+  background-color: var(--turk);
+  padding: 30px;
+ 
+  border-radius: 8px;
+  box-shadow: 2px 3px 20px var(--turk);
+}
+
+.book-box{
+  padding: 10px;
+  background-color: var(--light);
+  border-radius: 8px;
+  color: var(--turk);
+  line-height: 2rem;
+  box-shadow: 2px 2px 20px var(--light);
+}
+
+.book-box h2{
+  color:#AB886D
+}
+
