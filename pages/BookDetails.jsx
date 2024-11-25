@@ -21,8 +21,8 @@ export function BookDetails() {
 
   return (
     <div className="container">
-      <h1>Book: {book.bookName}</h1>
-      <h3>about this book : {book.bookDesc}</h3>
+      <h1>Book: {book.title}</h1>
+      <h3>about this book : {book.description}</h3>
 
       <Link to={'/book'}>go back</Link>
 

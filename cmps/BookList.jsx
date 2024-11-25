@@ -8,7 +8,7 @@ export function BookList({ books, removeBook }) {
       <div className="book-flex">
         {books.map((book, idx) => (
           <div key={book.id} className="book-item">
-            <BookPreview book={book} removeBook={removeBook} imgNum={idx} />
+            <BookPreview book={book} removeBook={removeBook} imgNum={book.imgNum} />
 
           </div>
         ))}

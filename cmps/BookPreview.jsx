@@ -4,10 +4,10 @@ const { Link } = ReactRouterDOM
 export function BookPreview({ book, removeBook, imgNum }) {
   return (
     <div className="book-box">
-      <h2>Name: {book.bookName}</h2>
-      <h3>Desc: {book.bookDesc}</h3>
+      <h2>Name: {book.title}</h2>
+      <h3>Desc: {book.description}</h3>
       <h3>
-        <span className="price">Price: {book.bookPrice}$</span>
+        <span className="price">Price: {book.listPrice.amount}{book.listPrice.currencyCode}</span>
       </h3>
       <img src={`../assets/BooksImages/${imgNum + 1}.jpg`} />
       <div className="btn-box">

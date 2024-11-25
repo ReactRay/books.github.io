@@ -129,13 +129,21 @@ body{
   background-color: #333;
   text-align: center;
     box-shadow: 4px 5px 20px var(--turk);
+    transition: all 2s ;
  
+}
+
+.home-flex:hover{
+  background-color: var(--nes);
 }
 .home-box{
   padding: 20px;
   background-color: var(--light);
   box-shadow: 5px 4px 20px var(--light);
+  transition: all 1s ease;
 }
+
+
 
 
 
