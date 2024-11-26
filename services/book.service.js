@@ -55,7 +55,7 @@ function query(filterBy = {}) {
     if (!books || books.length === 0) {
       // If empty, set the local storage to the dummyBooks only if local storage is truly empty
       if (!localStorage.getItem(BOOK_KEY)) {
-        storageService.post(BOOK_KEY, dummyBooks);
+        storageService.post(BOOK_KEY, dummyBooks[0]);
       }
       books = dummyBooks;  // Use the dummyBooks data
     }
@@ -88,7 +88,7 @@ function query(filterBy = {}) {
 }
 
 function get(bookId) {
-  return storageService.get(BOOK_KEY, bookId)
+  return storageService.get(BOOK_KEY, bookId) 
 }
 
 function remove(bookId) {
