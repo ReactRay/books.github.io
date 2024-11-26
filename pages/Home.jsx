@@ -4,8 +4,8 @@ const { NavLink } = ReactRouterDOM
 
 export function Home() {
     return (
-        <section className="container">
-            <h1>Welcome to our website</h1>
+        <section className="container ">
+            <h1 className="font" >Welcome to our website</h1>
             <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Praesentium officiis in eveniet eius, nisi atque.</p>
 
             <div className="home-flex">

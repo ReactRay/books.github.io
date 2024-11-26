@@ -35,9 +35,10 @@ a:hover{
 
   font-weight: 900;
 }
-font{
+.font{
       font-family: "Edu AU VIC WA NT Pre", cursive;
       color: var(--turk);
+     
 
 }
 
@@ -327,6 +328,104 @@ input{
 
 
 /* playing */
+/* Media Queries for Responsive Design */
+@media (max-width: 768px) {
+
+  /* Container adjustment */
+  .container {
+    padding: 20px;
+  }
+
+  /* Header flex adjustment for smaller screens */
+  .header-flex {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 15px;
+  }
+
+  .header-flex span {
+    font-size: 1.2rem;
+  }
+
+  /* Home flex layout adjustment for smaller screens */
+  .home-flex {
+    flex-direction: column;
+    padding: 20px;
+  }
+
+  /* Book flex adjustment */
+  .book-flex {
+    grid-template-columns: repeat(2, 1fr); /* 2 columns for mobile */
+    gap: 20px;
+  }
+
+  /* Form flex adjustment for smaller screens */
+  .form-flex {
+    flex-direction: column;
+    padding: 15px;
+  }
+
+  /* Image styling for smaller screens */
+  img {
+    max-width: 100%; /* Ensures the image is responsive */
+    height: auto;
+  }
+
+  /* Button adjustments */
+  .btn {
+    font-size: 1.2rem; /* Smaller font size */
+    padding: 6px 8px; /* Adjust padding */
+  }
+
+  /* Navigation flex adjustment */
+  .nav-flex {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  /* Input fields adjustment */
+  input {
+    width: 100%; /* Ensure inputs take up full width */
+  }
+
+  /* Adjust heading font sizes for smaller screens */
+  .container h1 {
+    font-size: 2.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+
+  .container h1 {
+    font-size: 2rem;
+  }
+
+ 
+  .btn {
+    font-size: 1rem;
+    padding: 4px 6px; 
+  }
+
+  
+  .home-box {
+    padding: 15px;
+  }
+
+ 
+  .book-flex {
+    grid-template-columns: 1fr;
+    padding: 20px;
+  }
+
+ 
+  .form-flex {
+    padding: 10px;
+  }
+
+  .nav {
+    font-size: 1rem;
+  }
+}
 
 
 

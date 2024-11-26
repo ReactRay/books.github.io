@@ -51,11 +51,10 @@ const dummyBooks = [
 
 function query(filterBy = {}) {
   return storageService.query(BOOK_KEY).then((books) => {
-    // Check if local storage is empty (no books found)
     if (!books || books.length === 0) {
-      // If empty, set the local storage to the dummyBooks only if local storage is truly empty
       if (!localStorage.getItem(BOOK_KEY)) {
         storageService.post(BOOK_KEY, dummyBooks[0]);
+        return dummyBooks[0]
       }
       books = dummyBooks;  // Use the dummyBooks data
     }

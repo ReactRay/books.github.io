@@ -29,7 +29,7 @@ export function BookIndex() {
 
   return (
     <div className="container">
-      <h1>It's all about books</h1>
+      <h1 className='font'>It's all about books</h1>
       <Filter filterBy={filterBy} onFilter={handleFilterChange} />
       <BookList books={books} removeBook={removeBook} />
     </div>

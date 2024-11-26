@@ -4,7 +4,7 @@ const { Link } = ReactRouterDOM
 export function BookPreview({ book, removeBook, imgNum }) {
   return (
     <div className="book-box">
-      <h1>Name: {book.title}</h1>
+      <h1 className="font">Name: {book.title}</h1>
       <h3>Desc: {book.description}</h3>
       <h3>
         <span className="price">
