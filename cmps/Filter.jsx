@@ -24,20 +24,20 @@ export function Filter({ filterBy, onFilter }) {
             <h3>Filter</h3>
             <form className="form-flex" onSubmit={handleSubmit}>
                 <div>
-                    <label>Book Name:</label>
+                    <label>Title:</label>
                     <input
                         type="text"
-                        name="bookName"
-                        value={filter.bookName || ''}
+                        name="title"
+                        value={filter.title || ''}
                         onChange={handleInputChange}
                     />
                 </div>
                 <div>
-                    <label>Book Description:</label>
+                    <label>Description:</label>
                     <input
                         type="text"
-                        name="bookDesc"
-                        value={filter.bookDesc || ''}
+                        name="description"
+                        value={filter.description || ''}
                         onChange={handleInputChange}
                     />
                 </div>

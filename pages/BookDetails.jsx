@@ -1,6 +1,7 @@
-const { useEffect, useState } = React
-const { useParams, Link } = ReactRouterDOM
-import { bookService } from '../services/book.service.js'
+
+const { useState, useEffect } = React;
+const { Link, useParams } = ReactRouterDOM;
+import { bookService } from "../services/book.service.js";
 
 export function BookDetails() {
   const [book, setBook] = useState(null)
@@ -17,15 +18,53 @@ export function BookDetails() {
     })
   }
 
-  if (!book) return <h1>loading...</h1>
+  if (!book) return <h1>Loading...</h1>
 
   return (
     <div className="container">
-      <h1>Book: {book.title}</h1>
-      <h3>about this book : {book.description}</h3>
+      <h1 className="book-title">Book: {book.title}</h1>
+      <div>
+        <div className="book-details-box">
+          <h3 className="section-title">About this book:</h3>
+          <p className="book-description">{book.description}</p>
 
-      <Link to={'/book'}>go back</Link>
+          <div className="book-meta">
+            <h4 className="meta-title">Authors:</h4>
+            <p className="meta-content">{book.authors.join(', ')}</p>
 
+            <h4 className="meta-title">Categories:</h4>
+            <p className="meta-content">{book.categories.join(', ')}</p>
+
+            <h4 className="meta-title">Published Date:</h4>
+            <p className="meta-content">{new Date(book.publishedDate).toLocaleDateString()}</p>
+
+            <h4 className="meta-title">Language:</h4>
+            <p className="meta-content">{book.language}</p>
+
+            <h4 className="meta-title">Page Count:</h4>
+            <p className="meta-content">{book.pageCount}</p>
+          </div>
+
+          <div className="book-price">
+            <h4 >Price:</h4>
+            <p >{book.listPrice.amount} {book.listPrice.currencyCode}</p>
+            {book.listPrice.isOnSale && <span className="sale-tag">On Sale!</span>}
+          </div>
+          <div className="book-image">
+            <img
+              src={`../assets/BooksImages/${book.imgNum}.jpg`}
+              alt={book.title}
+              className="book-img"
+            />
+          </div>
+          <div className="btn-box">
+            <Link to={'/book'} className="go-back-btn">Go back</Link>
+          </div>
+        </div>
+
+
+
+      </div>
     </div>
   )
 }

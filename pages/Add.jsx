@@ -14,7 +14,7 @@ export function Add() {
     categories: "",
     imgNum: Math.floor(Math.random() * 20) + 1,
     language: "",
-    listPrice: null, // This will be set with the nested object state
+    listPrice: null,
   }));
 
   const [listPrice, setListPrice] = useState({
@@ -30,38 +30,42 @@ export function Add() {
   useEffect(() => {
     if (bookid) {
       loadBook(bookid);
+
       console.log(bookid)
     }
   }, [bookid]);
 
   function handleChange({ target }) {
+
     const { name, value } = target;
+
     setBook((prev) => ({ ...prev, [name]: value }));
   }
 
   function handleListPriceChange({ target }) {
     const { name, value, type, checked } = target;
+
     const val = type === "checkbox" ? checked : value;
+
     setListPrice((prev) => ({ ...prev, [name]: val }));
   }
 
   function handleSubmit(e) {
     e.preventDefault();
 
-    // Split authors and categories by commas to form arrays
     const preparedBook = {
       ...book,
       authors: book.authors.split(",").map((author) => author.trim()),
       categories: book.categories.split(",").map((category) => category.trim()),
-      listPrice, // Include the nested object
+      listPrice,
     };
 
-    console.log(preparedBook, "Submitting book...");
+
     bookService.save(preparedBook).then(() => navigate("/book"));
   }
 
   function loadBook(bookid) {
-    const cleanBookId = bookid.replace(":", ""); // Clean the colon
+    const cleanBookId = bookid.replace(":", "");
     bookService.get(cleanBookId).then((loadedBook) => {
       setBook({
         ...loadedBook,
