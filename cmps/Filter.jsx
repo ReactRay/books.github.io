@@ -1,9 +1,11 @@
 const { useEffect, useState } = React
-const { Link } = ReactRouterDOM
+const { Link, useNavigate } = ReactRouterDOM
 
 
 export function Filter({ filterBy, onFilter }) {
     const [filter, setFilter] = useState(filterBy);
+
+    const navigate = useNavigate()
 
     useEffect(() => {
         setFilter(filterBy);
@@ -63,7 +65,7 @@ export function Filter({ filterBy, onFilter }) {
                     <button type="submit" className="btn">Submit</button>
                 </div>
             </form>
-            <Link className="btn-link" to="/book/add">Add a new Book</Link>
+            <button className="btn btn-link" onClick={() => navigate('/book/add')}>Add a new Book</button>
         </div>
     );
 }

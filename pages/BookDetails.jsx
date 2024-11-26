@@ -52,7 +52,7 @@ export function BookDetails() {
           </div>
           <div className="book-image">
             <img
-              src={`../assets/BooksImages/${book.imgNum}.jpg`}
+              src={`https://picsum.photos/id/${book.imgNum + 30}/200/300`}
               alt={book.title}
               className="book-img"
             />

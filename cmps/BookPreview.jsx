@@ -1,7 +1,10 @@
 
-const { Link } = ReactRouterDOM
+const { useNavigate } = ReactRouterDOM;
+
 
 export function BookPreview({ book, removeBook, imgNum }) {
+
+  const navigate = useNavigate()
   return (
     <div className="book-box">
       <h1 className="font">Name: {book.title}</h1>
@@ -13,10 +16,10 @@ export function BookPreview({ book, removeBook, imgNum }) {
       </h3>
       <img src={`https://picsum.photos/id/${book.imgNum + 30}/200/300`} alt={book.title} className="book-img" />
       <div className="btn-box">
-        <Link className='nav' to={`/book/bookdetails/${book.id}`}>select book</Link>
+        <button className='btn' onClick={() => navigate(`/book/bookdetails/${book.id}`)}>select book</button>
         <button className='btn' onClick={() => removeBook(book.id)}>Remove Book</button>
-        <Link className='nav' to={`/book/add/${book.id}`}>edit Book</Link>
+        <button className='btn' onClick={() => navigate(`/book/add/${book.id}`)}>edit Book</button>
       </div>
-    </div>
+    </div >
   );
 }

@@ -14,7 +14,7 @@
   margin: 10px;
   margin-right: 10px;
   padding:4px 6px;
-  background-color: var(--nes);
+  background-color: var(--light);
   font-size: 1.4rem;
   font-family: cursive;
   border-radius: 8px;
@@ -25,6 +25,7 @@
   color: var(--light);
 }
 a{
+  
   color: var(--light);
   text-decoration: none;
   margin: 0 10px;
@@ -297,17 +298,15 @@ input{
 
 
 
-.book-img {
 
-  width: 300px;
-  height: 50%;
-  border-radius: 8px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-
-}
 
 .btn-box {
   text-align: center;
+}
+.btn-link{
+  font-size:30px;
+  padding: 10px;
+ 
 }
 
 .go-back-btn {
@@ -328,15 +327,15 @@ input{
 
 
 /* playing */
-/* Media Queries for Responsive Design */
+
 @media (max-width: 768px) {
 
-  /* Container adjustment */
+ 
   .container {
     padding: 20px;
   }
 
-  /* Header flex adjustment for smaller screens */
+ 
   .header-flex {
     flex-direction: column;
     align-items: flex-start;
@@ -347,48 +346,47 @@ input{
     font-size: 1.2rem;
   }
 
-  /* Home flex layout adjustment for smaller screens */
+  
   .home-flex {
     flex-direction: column;
     padding: 20px;
   }
 
-  /* Book flex adjustment */
+  
   .book-flex {
-    grid-template-columns: repeat(2, 1fr); /* 2 columns for mobile */
+    grid-template-columns: repeat(2, 1fr); 
     gap: 20px;
   }
 
-  /* Form flex adjustment for smaller screens */
   .form-flex {
     flex-direction: column;
     padding: 15px;
   }
 
-  /* Image styling for smaller screens */
+
   img {
-    max-width: 100%; /* Ensures the image is responsive */
+    max-width: 100%; 
     height: auto;
   }
 
-  /* Button adjustments */
+ 
   .btn {
-    font-size: 1.2rem; /* Smaller font size */
-    padding: 6px 8px; /* Adjust padding */
+    font-size: 1.2rem; 
+    padding: 6px 8px; 
   }
 
-  /* Navigation flex adjustment */
+
   .nav-flex {
     flex-direction: column;
     gap: 10px;
   }
 
-  /* Input fields adjustment */
+
   input {
-    width: 100%; /* Ensure inputs take up full width */
+    width: 100%; 
   }
 
-  /* Adjust heading font sizes for smaller screens */
+ 
   .container h1 {
     font-size: 2.5rem;
   }

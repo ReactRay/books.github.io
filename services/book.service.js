@@ -63,7 +63,6 @@ async function query(filterBy = {}) {
        
         return storageService.query(BOOK_KEY)
     }
-    // Filter books based on the filter criteria
     if (filterBy.title) {
       const regExp = new RegExp(filterBy.title, 'i');
       books = books.filter((book) => regExp.test(book.title));
@@ -82,11 +81,11 @@ async function query(filterBy = {}) {
       books = books.filter((book) => book.listPrice.amount <= +filterBy.maxPrice);
     }
 
-    // Return the filtered books or the dummyBooks if no matches
+   
     return books.length ? books : [];
   }).catch((error) => {
     console.error('Error querying books:', error);
-    return [];  // Fallback to dummyBooks if there's an error
+    return [];  
   });
 }
 
