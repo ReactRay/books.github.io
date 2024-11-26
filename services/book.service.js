@@ -49,16 +49,20 @@ const dummyBooks = [
   },
 ]
 
-function query(filterBy = {}) {
-  return storageService.query(BOOK_KEY).then((books) => {
+async function query(filterBy = {}) {
+  return storageService.query(BOOK_KEY).then(async (books) => {
     if (!books || books.length === 0) {
       if (!localStorage.getItem(BOOK_KEY)) {
-        storageService.post(BOOK_KEY, dummyBooks[0]);
-        return dummyBooks[0]
+       await storageService.post(BOOK_KEY, dummyBooks[0])
+       await storageService.post(BOOK_KEY,dummyBooks[1])
+       
+        return storageService.query(BOOK_KEY)
       }
-      books = dummyBooks;  // Use the dummyBooks data
+      await storageService.post(BOOK_KEY, dummyBooks[0])
+       await storageService.post(BOOK_KEY,dummyBooks[1])
+       
+        return storageService.query(BOOK_KEY)
     }
-
     // Filter books based on the filter criteria
     if (filterBy.title) {
       const regExp = new RegExp(filterBy.title, 'i');
@@ -79,10 +83,10 @@ function query(filterBy = {}) {
     }
 
     // Return the filtered books or the dummyBooks if no matches
-    return books.length ? books : dummyBooks;
+    return books.length ? books : [];
   }).catch((error) => {
     console.error('Error querying books:', error);
-    return dummyBooks;  // Fallback to dummyBooks if there's an error
+    return [];  // Fallback to dummyBooks if there's an error
   });
 }
 
