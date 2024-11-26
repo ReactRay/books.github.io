@@ -11,7 +11,7 @@ export function BookPreview({ book, removeBook, imgNum }) {
           Price: {book.listPrice && book.listPrice.amount}{book.listPrice && book.listPrice.currencyCode}
         </span>
       </h3>
-      <img src={`../assets/BooksImages/${imgNum}.jpg`} alt={book.title} className="book-img" />
+      <img src={`https://picsum.photos/id/${book.imgNum + 30}/200/300`} alt={book.title} className="book-img" />
       <div className="btn-box">
         <Link className='nav' to={`/book/bookdetails/${book.id}`}>select book</Link>
         <button className='btn' onClick={() => removeBook(book.id)}>Remove Book</button>
