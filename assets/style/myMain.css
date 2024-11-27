@@ -130,18 +130,25 @@ body{
   background-color: #333;
   text-align: center;
     box-shadow: 4px 5px 20px var(--turk);
-    transition: all 2s ;
+    transition: all 2s 0.5s ;
  
 }
 
 .home-flex:hover{
-  background-color: var(--nes);
+  transform: scale(0.9);
+    
+
 }
 .home-box{
   padding: 20px;
   background-color: var(--light);
   box-shadow: 5px 4px 20px var(--light);
   transition: all 1s ease;
+}
+
+.home-box:hover{
+  transform: scale(1.4);
+    box-shadow: 5px 4px 20px var(--turk);
 }
 
 
@@ -339,7 +346,7 @@ input{
  
   .container {
     
-    padding: 20px;
+    /* padding: 20px; */
     width: 100%;
   }
 
@@ -369,6 +376,7 @@ input{
   .form-flex {
     flex-direction: column;
     padding: 25px;
+    width: 100%;
   }
 
 

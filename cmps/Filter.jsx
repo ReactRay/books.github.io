@@ -122,7 +122,7 @@ export function Filter({ filterBy, onFilter }) {
                     <button type="submit" className="btn btn-primary">Apply Filters</button>
                 </div>
             </form>
-            <button className="btn btn-link" onClick={() => navigate('/book/add')}>Add a new Book</button>
+            <button className="btn btn-link " onClick={() => navigate('/book/add')}>Add a new Book</button>
         </div>
     );
 }
