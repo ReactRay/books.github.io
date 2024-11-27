@@ -6,7 +6,7 @@ export function BookPreview({ book, removeBook, imgNum }) {
 
   const navigate = useNavigate()
   return (
-    <div className="book-box">
+    <div className="book-box"  >
 
       <h5 className="font">Name: {book.title}</h5>
       <h5>Desc: {book.description}</h5>
@@ -20,7 +20,7 @@ export function BookPreview({ book, removeBook, imgNum }) {
       <div className="btn-box">
         <button className='btn' onClick={() => navigate(`/book/bookdetails/${book.id}`)}>select book</button>
         <button className='btn' onClick={() => removeBook(book.id)}>Remove Book</button>
-        <button className='btn' onClick={() => navigate(`/book/add/${book.id}`)}>edit Book</button>
+        <button className='btn' onClick={() => navigate(`/book/bookedit/${book.id}`)}>edit Book</button>
       </div>
     </div >
   );

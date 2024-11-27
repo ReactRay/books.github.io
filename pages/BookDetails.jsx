@@ -24,14 +24,14 @@ export function BookDetails() {
     const publishedDate = new Date(book.publishedDate);
     const currentDate = new Date();
     const timeDifference = currentDate - publishedDate;
-    const yearsDifference = timeDifference / (1000 * 60 * 60 * 24 * 365); // Convert milliseconds to years
+    const yearsDifference = timeDifference / (1000 * 60 * 60 * 24 * 365);
 
     if (yearsDifference > 10) {
       return "Vintage";
     } else if (yearsDifference < 1) {
       return "New";
     }
-    return ''; // No text for other cases
+    return '';
   }
 
 

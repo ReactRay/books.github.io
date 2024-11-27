@@ -73,7 +73,7 @@ function animateCSS(el, animation='bounce') {
     })
 }
 
-export function debounce(func, time = 1000) {
+export function debounce(func, time = 700) {
     var timeoutId
     return (...args) => {
         clearTimeout(timeoutId)

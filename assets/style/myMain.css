@@ -72,6 +72,8 @@ a:hover{
   --espresso: #AB886D;
   --turk: #333;
   
+ 
+  
 }
 
 body{
@@ -102,7 +104,7 @@ body{
 .nav-flex{
   display:flex;
   gap: 20px;
-  color: #D6C0B3;
+  color: var(--nes);
   padding:10px;
 
 }
@@ -127,7 +129,7 @@ body{
   justify-content: space-evenly;
   align-items: center;
   padding:30px;
-  background-color: #333;
+  background-color: var(--turk);
   text-align: center;
     box-shadow: 4px 5px 20px var(--turk);
     transition: all 2s 0.5s ;
@@ -149,6 +151,7 @@ body{
 .home-box:hover{
   transform: scale(1.4);
     box-shadow: 5px 4px 20px var(--turk);
+    opacity: 0.85;
 }
 
 
@@ -219,6 +222,7 @@ input{
   color: var(--espresso);
   rotate: 5deg;
     box-shadow: 10px 10px 40px var(--light);
+    opacity: 0.8;
 
   
 }
