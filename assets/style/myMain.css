@@ -165,6 +165,7 @@ img{
   border-radius: 8px;
    box-shadow: 2px 3px 20px var(--turk);
    display: flex;
+   flex-wrap: wrap;
   
 }
 
@@ -192,7 +193,6 @@ input{
 }
 
 .book-box{
-
   padding: 20px;
   text-align: center;
  
@@ -223,6 +223,7 @@ input{
 /* testing */
 /* BookDetails Section */
 .book-container {
+
   max-width: 1200px;
   margin: 0 auto;
   padding: 50px;
@@ -337,6 +338,7 @@ input{
 
  
   .container {
+    
     padding: 20px;
     width: 100%;
   }
@@ -432,13 +434,32 @@ input{
 }
 
 .red{
-  color: red
+  color: lightcoral;
+}
+.green{
+  color:green;
 }
 
 .span{
   color: var(--espresso);
   font-size: 1.8rem;
   font-weight: 800;
+}
+
+.sale-tag{
+  color: red;
+
+
+}
+
+.sale{
+  position: absolute;
+  left:90%;
+  top: 5%;
+  rotate: 10deg;
+  color:red;
+  font-weight: 900;
+  transform: scale(3);
 }
 
 

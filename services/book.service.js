@@ -187,34 +187,60 @@ const dummyBooks = [
 
 
 async function query(filterBy = {}) {
-  return storageService.query(BOOK_KEY).then(async (books) => {
-    if (!books || books.length === 0) {
-      for (const book of dummyBooks) {
-        await storageService.post(BOOK_KEY, book);
-      }
-      return storageService.query(BOOK_KEY);
+  let books = await storageService.query(BOOK_KEY);
+  if (!books || !books.length) {
+    books = dummyBooks;
+    for (const book of dummyBooks) {
+      await storageService.post(BOOK_KEY, book);
     }
+  }
 
-    if (filterBy.title) {
-      const regExp = new RegExp(filterBy.title, 'i');
-      books = books.filter((book) => regExp.test(book.title));
-    }
+  if (filterBy.title) {
+    const regExp = new RegExp(filterBy.title, "i");
+    books = books.filter((book) => regExp.test(book.title));
+  }
 
-    if (filterBy.description) {
-      const regExp = new RegExp(filterBy.description, 'i');
-      books = books.filter((book) => regExp.test(book.description));
-    }
+  if (filterBy.subtitle) {
+    const regExp = new RegExp(filterBy.subtitle, "i");
+    books = books.filter((book) => regExp.test(book.subtitle));
+  }
 
-    if (filterBy.minPrice && !isNaN(filterBy.minPrice)) {
-      books = books.filter((book) => book.listPrice.amount >= +filterBy.minPrice);
-    }
+  if (filterBy.authors) {
+    const regExp = new RegExp(filterBy.authors, "i");
+    books = books.filter((book) =>
+      book.authors.some((author) => regExp.test(author))
+    );
+  }
 
-    if (filterBy.maxPrice && !isNaN(filterBy.maxPrice)) {
-      books = books.filter((book) => book.listPrice.amount <= +filterBy.maxPrice);
-    }
+  if (filterBy.description) {
+    const regExp = new RegExp(filterBy.description, "i");
+    books = books.filter((book) => regExp.test(book.description));
+  }
 
-    return books.length ? books : [];
-  });
+  if (filterBy.categories) {
+    const regExp = new RegExp(filterBy.categories, "i");
+    books = books.filter((book) =>
+      book.categories.some((category) => regExp.test(category))
+    );
+  }
+
+  if (filterBy.pageCount && !isNaN(filterBy.pageCount)) {
+    books = books.filter((book) => book.pageCount === +filterBy.pageCount);
+  }
+
+  if (filterBy.minPrice && !isNaN(filterBy.minPrice)) {
+    books = books.filter((book) => book.listPrice.amount >= +filterBy.minPrice);
+  }
+
+  if (filterBy.maxPrice && !isNaN(filterBy.maxPrice)) {
+    books = books.filter((book) => book.listPrice.amount <= +filterBy.maxPrice);
+  }
+
+  if (filterBy.isOnSale !== undefined) {
+    books = books.filter((book) => book.listPrice.isOnSale === filterBy.isOnSale);
+  }
+
+  return books;
 }
 
 

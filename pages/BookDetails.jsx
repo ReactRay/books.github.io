@@ -20,6 +20,19 @@ export function BookDetails() {
     })
   }
 
+  function checkDate() {
+    const publishedDate = new Date(book.publishedDate);
+    const currentDate = new Date();
+    const timeDifference = currentDate - publishedDate;
+    const yearsDifference = timeDifference / (1000 * 60 * 60 * 24 * 365); // Convert milliseconds to years
+
+    if (yearsDifference > 10) {
+      return "Vintage";
+    } else if (yearsDifference < 1) {
+      return "New";
+    }
+    return ''; // No text for other cases
+  }
 
 
   if (!book) return <h1>Loading...</h1>
@@ -27,7 +40,9 @@ export function BookDetails() {
   return (
     <div className="container">
       <h1 className="book-title">Book: {book.title}</h1>
-      <div>
+      <div style={{ position: 'relative' }}>
+        {book.listPrice.isOnSale && <span className="sale">On Sale!</span>}
+
         <div className="book-details-box">
           <h3 className="section-title">About this book:</h3>
           <p className="book-description">{book.description}</p>
@@ -40,7 +55,7 @@ export function BookDetails() {
             <p className="meta-content">{book.categories.join(', ')}</p>
 
             <h4 className="meta-title">Published Date:</h4>
-            <p className="meta-content">{new Date(book.publishedDate).toLocaleDateString()}</p>
+            <p className="meta-content">{new Date(book.publishedDate).toLocaleDateString()} <span className="span">{checkDate()}</span></p>
 
             <h4 className="meta-title">Language:</h4>
             <p className="meta-content">{book.language}</p>
@@ -51,7 +66,7 @@ export function BookDetails() {
 
           <div className="book-price">
             <h4 >Price:</h4>
-            <p >{book.listPrice.amount} {book.listPrice.currencyCode}</p>
+            <p><span className={book.listPrice.amount > 150 ? 'red' : book.listPrice.amount < 20 ? 'green' : ''}>{book.listPrice.amount} </span>{book.listPrice.currencyCode}</p>
             {book.listPrice.isOnSale && <span className="sale-tag">On Sale!</span>}
           </div>
           <div className="book-image">

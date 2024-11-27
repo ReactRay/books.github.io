@@ -7,6 +7,7 @@ export function BookPreview({ book, removeBook, imgNum }) {
   const navigate = useNavigate()
   return (
     <div className="book-box">
+
       <h5 className="font">Name: {book.title}</h5>
       <h5>Desc: {book.description}</h5>
       <h5>

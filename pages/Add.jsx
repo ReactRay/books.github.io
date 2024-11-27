@@ -66,13 +66,13 @@ export function Add() {
 
   function loadBook(bookid) {
 
-    bookService.get(bookid).then((loadedBook) => {
+    bookService.get(bookid).then((myBook) => {
       setBook({
-        ...loadedBook,
-        authors: loadedBook.authors.join(", "),
-        categories: loadedBook.categories.join(", "),
+        ...myBook,
+        authors: myBook.authors.join(", "),
+        categories: myBook.categories.join(", "),
       });
-      setListPrice(loadedBook.listPrice);
+      setListPrice(myBook.listPrice);
     });
   }
 
