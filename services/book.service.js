@@ -20,7 +20,7 @@ const dummyBooks = [
     authors: ['F. Scott Fitzgerald'],
     description: 'A novel about the American dream set in the Jazz Age.',
     categories: ['Classic'],
-    imgNum: 1,
+    imgNum: 6,
     language: 'English',
     listPrice: {
       amount: 15.99,
@@ -47,22 +47,154 @@ const dummyBooks = [
     pageCount: 281,
     publishedDate: '1960-07-11',
   },
-]
+  {
+    id: 'b3',
+    title: '1984',
+    subtitle: 'A dystopian masterpiece',
+    authors: ['George Orwell'],
+    description: 'A story exploring totalitarianism, surveillance, and freedom.',
+    categories: ['Dystopian', 'Classic'],
+    imgNum: 3,
+    language: 'English',
+    listPrice: {
+      amount: 12.49,
+      currencyCode: 'USD',
+      isOnSale: true,
+    },
+    pageCount: 328,
+    publishedDate: '1949-06-08',
+  },
+  {
+    id: 'b4',
+    title: 'Pride and Prejudice',
+    subtitle: 'A tale of love and society',
+    authors: ['Jane Austen'],
+    description: 'A classic novel about love and social class in Regency England.',
+    categories: ['Romance', 'Classic'],
+    imgNum: 7,
+    language: 'English',
+    listPrice: {
+      amount: 9.99,
+      currencyCode: 'USD',
+      isOnSale: true,
+    },
+    pageCount: 279,
+    publishedDate: '1813-01-28',
+  },
+  {
+    id: 'b5',
+    title: 'The Catcher in the Rye',
+    subtitle: 'A journey through adolescence',
+    authors: ['J.D. Salinger'],
+    description: 'A story of teenage rebellion and identity.',
+    categories: ['Fiction'],
+    imgNum: 4,
+    language: 'English',
+    listPrice: {
+      amount: 14.99,
+      currencyCode: 'USD',
+      isOnSale: false,
+    },
+    pageCount: 214,
+    publishedDate: '1951-07-16',
+  },
+  {
+    id: 'b6',
+    title: 'The Hobbit',
+    subtitle: 'A fantasy adventure',
+    authors: ['J.R.R. Tolkien'],
+    description: 'A journey of a hobbit seeking treasure and adventure.',
+    categories: ['Fantasy'],
+    imgNum: 9,
+    language: 'English',
+    listPrice: {
+      amount: 16.99,
+      currencyCode: 'USD',
+      isOnSale: true,
+    },
+    pageCount: 310,
+    publishedDate: '1937-09-21',
+  },
+  {
+    id: 'b7',
+    title: 'Moby Dick',
+    subtitle: 'The quest for the white whale',
+    authors: ['Herman Melville'],
+    description: 'A tale of obsession and revenge on the open sea.',
+    categories: ['Adventure', 'Classic'],
+    imgNum: 1,
+    language: 'English',
+    listPrice: {
+      amount: 13.50,
+      currencyCode: 'USD',
+      isOnSale: false,
+    },
+    pageCount: 635,
+    publishedDate: '1851-10-18',
+  },
+  {
+    id: 'b8',
+    title: 'Brave New World',
+    subtitle: 'A futuristic vision',
+    authors: ['Aldous Huxley'],
+    description: 'A chilling vision of a dystopian future.',
+    categories: ['Dystopian'],
+    imgNum: 8,
+    language: 'English',
+    listPrice: {
+      amount: 11.99,
+      currencyCode: 'USD',
+      isOnSale: true,
+    },
+    pageCount: 268,
+    publishedDate: '1932-08-31',
+  },
+  {
+    id: 'b9',
+    title: 'Crime and Punishment',
+    subtitle: 'A psychological drama',
+    authors: ['Fyodor Dostoevsky'],
+    description: 'An exploration of morality and redemption.',
+    categories: ['Philosophy', 'Classic'],
+    imgNum: 5,
+    language: 'Russian',
+    listPrice: {
+      amount: 19.99,
+      currencyCode: 'USD',
+      isOnSale: false,
+    },
+    pageCount: 671,
+    publishedDate: '1866-01-01',
+  },
+  {
+    id: 'b10',
+    title: 'The Alchemist',
+    subtitle: 'A journey of self-discovery',
+    authors: ['Paulo Coelho'],
+    description: 'An inspiring tale about following your dreams.',
+    categories: ['Philosophy', 'Fiction'],
+    imgNum: 10,
+    language: 'Portuguese',
+    listPrice: {
+      amount: 13.99,
+      currencyCode: 'USD',
+      isOnSale: true,
+    },
+    pageCount: 208,
+    publishedDate: '1988-04-01',
+  },
+];
+
 
 async function query(filterBy = {}) {
   return storageService.query(BOOK_KEY).then(async (books) => {
     if (!books || books.length === 0) {
-      if (!localStorage.getItem(BOOK_KEY)) {
-       await storageService.post(BOOK_KEY, dummyBooks[0])
-       await storageService.post(BOOK_KEY,dummyBooks[1])
-       
-        return storageService.query(BOOK_KEY)
+      for (const book of dummyBooks) {
+        await storageService.post(BOOK_KEY, book);
       }
-      await storageService.post(BOOK_KEY, dummyBooks[0])
-       await storageService.post(BOOK_KEY,dummyBooks[1])
-       
-        return storageService.query(BOOK_KEY)
+      return storageService.query(BOOK_KEY);
     }
+
     if (filterBy.title) {
       const regExp = new RegExp(filterBy.title, 'i');
       books = books.filter((book) => regExp.test(book.title));
@@ -81,13 +213,10 @@ async function query(filterBy = {}) {
       books = books.filter((book) => book.listPrice.amount <= +filterBy.maxPrice);
     }
 
-   
     return books.length ? books : [];
-  }).catch((error) => {
-    console.error('Error querying books:', error);
-    return [];  
   });
 }
+
 
 function get(bookId) {
   return storageService.get(BOOK_KEY, bookId) 

@@ -14,7 +14,8 @@
   margin: 10px;
   margin-right: 10px;
   padding:4px 6px;
-  background-color: var(--light);
+  background-color: var(--turk);
+  color: var(--espresso);
   font-size: 1.4rem;
   font-family: cursive;
   border-radius: 8px;
@@ -107,13 +108,9 @@ body{
 }
 
 .container {
-  max-width: 1600px;
+  width: 90%;
   padding: 50px;
   margin: 0 auto;
-
-  
-
-
 }
 
 .container h1{
@@ -123,7 +120,7 @@ body{
 }
 
 .home-flex{
-
+  
   border-radius: 10px;
   margin-top: 20px;
   display: flex;
@@ -149,12 +146,15 @@ body{
 
 
 
-
+.book-img{
+  width: 200px;
+  height: 300px;
+}
 
 img{
   margin-top: 20px;
   max-width: 500px;
-  height: 500px;
+
 }
 
 .form-flex{
@@ -177,11 +177,14 @@ input{
   margin: 10px;
 }
 
+
 .book-flex{
   display: grid;
-  grid-template-columns: repeat(5,1fr);
+  grid-template-columns: repeat(4,1fr);
+  width: 95%;
+  margin: 0 auto;
   padding:40px;
-  gap: 30px;
+  gap: 10px;
   background-color: var(--turk);
   
   border-radius: 8px;
@@ -191,9 +194,11 @@ input{
 .book-box{
 
   padding: 20px;
+  text-align: center;
+ 
   background-color: var(--nes);
+  color: var(--espresso);
   border-radius: 8px;
-  color: var(--turk);
   line-height: 2rem;
   font-size: 25px;
   box-shadow: 2px 2px 20px var(--light);
@@ -333,6 +338,7 @@ input{
  
   .container {
     padding: 20px;
+    width: 100%;
   }
 
  
@@ -360,7 +366,7 @@ input{
 
   .form-flex {
     flex-direction: column;
-    padding: 15px;
+    padding: 25px;
   }
 
 
@@ -417,7 +423,7 @@ input{
 
  
   .form-flex {
-    padding: 10px;
+    padding: 25px;
   }
 
   .nav {
@@ -425,5 +431,14 @@ input{
   }
 }
 
+.red{
+  color: red
+}
+
+.span{
+  color: var(--espresso);
+  font-size: 1.8rem;
+  font-weight: 800;
+}
 
 

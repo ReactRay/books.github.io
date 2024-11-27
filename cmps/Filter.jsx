@@ -1,15 +1,21 @@
-const { useEffect, useState } = React
+const { useEffect, useState, useRef } = React
 const { Link, useNavigate } = ReactRouterDOM
+import { debounce } from "../services/util.service.js"
 
 
 export function Filter({ filterBy, onFilter }) {
     const [filter, setFilter] = useState(filterBy);
+    const onDebounce = useRef(debounce(onFilter)).current
 
     const navigate = useNavigate()
 
     useEffect(() => {
-        setFilter(filterBy);
-    }, [filterBy]);
+        if (filter) {
+            onDebounce(filter)
+        }
+
+
+    }, [filterBy, filter]);
 
     function handleInputChange(e) {
         const { name: field, value } = e.target;
@@ -23,8 +29,11 @@ export function Filter({ filterBy, onFilter }) {
 
     return (
         <div className="container">
+
+            <h1 className='font'>It's all about books</h1>
             <h3>Filter</h3>
             <form className="form-flex" onSubmit={handleSubmit}>
+
                 <div>
                     <label>Title:</label>
                     <input
@@ -62,7 +71,7 @@ export function Filter({ filterBy, onFilter }) {
                     />
                 </div>
                 <div>
-                    <button type="submit" className="btn">Submit</button>
+
                 </div>
             </form>
             <button className="btn btn-link" onClick={() => navigate('/book/add')}>Add a new Book</button>

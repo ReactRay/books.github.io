@@ -9,14 +9,18 @@ export function BookDetails() {
 
   useEffect(() => {
     loadBook(params.bookid)
+
   }, [params.bookid])
 
   function loadBook(bookid) {
-    const cleanBookId = bookid.replace(':', '') // Clean the colon
-    bookService.get(cleanBookId).then((book) => {
+
+    bookService.get(bookid).then((book) => {
       setBook(book)
+
     })
   }
+
+
 
   if (!book) return <h1>Loading...</h1>
 
@@ -42,7 +46,7 @@ export function BookDetails() {
             <p className="meta-content">{book.language}</p>
 
             <h4 className="meta-title">Page Count:</h4>
-            <p className="meta-content">{book.pageCount}</p>
+            <p className="meta-content">{book.pageCount}<span className="span"> {book.pageCount > 500 ? 'Serious Reading' : book.pageCount > 200 ? 'Decent Reading' : book.pageCount < 100 ? 'Light Reading' : ''}</span></p>
           </div>
 
           <div className="book-price">
@@ -51,11 +55,8 @@ export function BookDetails() {
             {book.listPrice.isOnSale && <span className="sale-tag">On Sale!</span>}
           </div>
           <div className="book-image">
-            <img
-              src={`https://picsum.photos/id/${book.imgNum + 30}/200/300`}
-              alt={book.title}
-              className="book-img"
-            />
+            <img src={`../assets/BooksImages/${book.imgNum}.jpg`} alt={book.title} className="book-img" />
+
           </div>
           <div className="btn-box">
             <Link to={'/book'} className="go-back-btn">Go back</Link>

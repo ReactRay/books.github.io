@@ -53,7 +53,7 @@ export function Add() {
   function handleSubmit(e) {
     e.preventDefault();
 
-    const preparedBook = {
+    const fulldBook = {
       ...book,
       authors: book.authors.split(",").map((author) => author.trim()),
       categories: book.categories.split(",").map((category) => category.trim()),
@@ -61,18 +61,18 @@ export function Add() {
     };
 
 
-    bookService.save(preparedBook).then(() => navigate("/book"));
+    bookService.save(fulldBook).then(() => navigate("/book"));
   }
 
   function loadBook(bookid) {
-    const cleanBookId = bookid.replace(":", "");
-    bookService.get(cleanBookId).then((loadedBook) => {
+
+    bookService.get(bookid).then((loadedBook) => {
       setBook({
         ...loadedBook,
         authors: loadedBook.authors.join(", "),
         categories: loadedBook.categories.join(", "),
       });
-      setListPrice(loadedBook.listPrice || listPrice);
+      setListPrice(loadedBook.listPrice);
     });
   }
 
