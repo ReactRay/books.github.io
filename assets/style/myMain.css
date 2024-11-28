@@ -198,7 +198,7 @@ body {
 
 .review-form {
 
-  width: 60%;
+  width: 90%;
   margin: 20px auto;
   background-color: var(--turk);
   padding: 20px;
@@ -466,7 +466,9 @@ input {
 
     /* padding: 20px; */
     width: 100%;
+    padding: 10px;
   }
+
 
 
   .header-flex {
@@ -487,7 +489,7 @@ input {
 
 
   .book-flex {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(1, 1fr);
     gap: 20px;
   }
 
@@ -524,9 +526,21 @@ input {
   .container h1 {
     font-size: 2.5rem;
   }
+
+  .book-info {
+    width: 100%;
+    padding: 15px;
+    margin: 10px;
+  }
+
+  .review-form {
+    width: 100%;
+    padding: 15px;
+    margin: 10px;
+  }
 }
 
-@media (max-width: 480px) {
+/* @media (max-width: 480px) {
 
   .container h1 {
     font-size: 2rem;
@@ -536,6 +550,11 @@ input {
   .btn {
     font-size: 1rem;
     padding: 4px 6px;
+  }
+
+  .container {
+    width: 95%;
+    padding: 5px;
   }
 
 
@@ -557,7 +576,13 @@ input {
   .nav {
     font-size: 1rem;
   }
-}
+
+  .book-info {
+    width: 100%;
+    padding: 5px;
+    margin: 1px 1px;
+  }
+} */
 
 .red {
   color: lightcoral;

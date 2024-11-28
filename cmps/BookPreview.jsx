@@ -15,8 +15,8 @@ export function BookPreview({ book, removeBook, imgNum }) {
             {book.listPrice && book.listPrice.amount}{book.listPrice && book.listPrice.currencyCode}
           </span>
         </h5>
-        <img src={`https://picsum.photos/id/${book.imgNum + 33}/200/300`} alt={book.title} className="book-img" />
-        {/* <img src={`../assets/BooksImages/${book.imgNum}.jpg`} alt={book.title} className="book-img" /> */}
+        {/* <img src={`https://picsum.photos/id/${book.imgNum + 33}/200/300`} alt={book.title} className="book-img" /> */}
+        <img src={`../assets/BooksImages/${book.imgNum}.jpg`} alt={book.title} className="book-img" />
         {book.listPrice.isOnSale && <h4 className="red">ON SALE!</h4>}
       </div>
       <div className="btn-box">

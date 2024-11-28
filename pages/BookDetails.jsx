@@ -31,6 +31,10 @@ export function BookDetails() {
     );
   }
 
+  function removeReview(reviewId) {
+    reviewService.remove(reviewId).then(() => setReviews((prev) => prev.filter(review => review.id !== reviewId)))
+  }
+
   function checkDate() {
     if (!book) return "";
     const publishedDate = new Date(book.publishedDate);
@@ -83,7 +87,7 @@ export function BookDetails() {
       </div>
 
       <ReviewsForm addToReviews={addToReviews} bookId={params.bookid} />
-      <Reviews reviews={reviews} />
+      <Reviews reviews={reviews} removeReview={removeReview} />
     </div>
   );
 }
