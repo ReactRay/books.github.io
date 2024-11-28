@@ -287,6 +287,10 @@ input {
   margin: 10px;
 }
 
+.btn-flex a {
+  font-size: 1.2rem;
+  color: var(--espresso)
+}
 
 .book-flex {
   display: grid;

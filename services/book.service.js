@@ -35,7 +35,8 @@ const dummyBooks = [
     title: 'To Kill a Mockingbird',
     subtitle: 'A story of justice',
     authors: ['Harper Lee'],
-    description: 'A story about racial injustice and the loss of innocence in the South.',
+    description:
+      'A story about racial injustice and the loss of innocence in the South.',
     categories: ['Fiction'],
     imgNum: 2,
     language: 'English',
@@ -52,7 +53,8 @@ const dummyBooks = [
     title: '1984',
     subtitle: 'A dystopian masterpiece',
     authors: ['George Orwell'],
-    description: 'A story exploring totalitarianism, surveillance, and freedom.',
+    description:
+      'A story exploring totalitarianism, surveillance, and freedom.',
     categories: ['Dystopian', 'Classic'],
     imgNum: 3,
     language: 'English',
@@ -69,7 +71,8 @@ const dummyBooks = [
     title: 'Pride and Prejudice',
     subtitle: 'A tale of love and society',
     authors: ['Jane Austen'],
-    description: 'A classic novel about love and social class in Regency England.',
+    description:
+      'A classic novel about love and social class in Regency England.',
     categories: ['Romance', 'Classic'],
     imgNum: 7,
     language: 'English',
@@ -125,7 +128,7 @@ const dummyBooks = [
     imgNum: 1,
     language: 'English',
     listPrice: {
-      amount: 13.50,
+      amount: 13.5,
       currencyCode: '$',
       isOnSale: false,
     },
@@ -183,69 +186,65 @@ const dummyBooks = [
     pageCount: 208,
     publishedDate: '1988-04-01',
   },
-];
-
+]
 
 async function query(filterBy = {}) {
-  let books = await storageService.query(BOOK_KEY);
+  let books = await storageService.query(BOOK_KEY)
   if (!books || !books.length) {
-    books = dummyBooks;
+    books = dummyBooks
     for (const book of dummyBooks) {
-      await storageService.post(BOOK_KEY, book);
+      await storageService.post(BOOK_KEY, book)
     }
   }
 
   if (filterBy.title) {
-    const regExp = new RegExp(filterBy.title, "i");
-    books = books.filter((book) => regExp.test(book.title));
+    const regExp = new RegExp(filterBy.title, 'i')
+    books = books.filter((book) => regExp.test(book.title))
   }
 
   if (filterBy.subtitle) {
-    const regExp = new RegExp(filterBy.subtitle, "i");
-    books = books.filter((book) => regExp.test(book.subtitle));
+    const regExp = new RegExp(filterBy.subtitle, 'i')
+    books = books.filter((book) => regExp.test(book.subtitle))
   }
 
   if (filterBy.authors) {
-    const regExp = new RegExp(filterBy.authors, "i");
+    const regExp = new RegExp(filterBy.authors, 'i')
     books = books.filter((book) =>
       book.authors.some((author) => regExp.test(author))
-    );
+    )
   }
 
   if (filterBy.description) {
-    const regExp = new RegExp(filterBy.description, "i");
-    books = books.filter((book) => regExp.test(book.description));
+    const regExp = new RegExp(filterBy.description, 'i')
+    books = books.filter((book) => regExp.test(book.description))
   }
 
   if (filterBy.categories) {
-    const regExp = new RegExp(filterBy.categories, "i");
+    const regExp = new RegExp(filterBy.categories, 'i')
     books = books.filter((book) =>
       book.categories.some((category) => regExp.test(category))
-    );
+    )
   }
 
   if (filterBy.pageCount && !isNaN(filterBy.pageCount)) {
-    books = books.filter((book) => book.pageCount === +filterBy.pageCount);
+    books = books.filter((book) => book.pageCount === +filterBy.pageCount)
   }
 
   if (filterBy.minPrice && !isNaN(filterBy.minPrice)) {
-    books = books.filter((book) => book.listPrice.amount >= +filterBy.minPrice);
+    books = books.filter((book) => book.listPrice.amount >= +filterBy.minPrice)
   }
 
   if (filterBy.maxPrice && !isNaN(filterBy.maxPrice)) {
-    books = books.filter((book) => book.listPrice.amount <= +filterBy.maxPrice);
+    books = books.filter((book) => book.listPrice.amount <= +filterBy.maxPrice)
   }
 
   if (filterBy.isOnSale !== undefined) {
-    books = books.filter((book) => book.listPrice.isOnSale === filterBy.isOnSale);
+    books = books.filter(
+      (book) => book.listPrice.isOnSale === filterBy.isOnSale
+    )
   }
 
-  return books;
-}
-
-
-function get(bookId) {
-  return storageService.get(BOOK_KEY, bookId) 
+  return books
 }
 
 function remove(bookId) {
@@ -294,6 +293,23 @@ function getDefaultFilter(
   return {
     title: filterBy.title || '',
     description: filterBy.description || '',
-    minPrice: filterBy.minPrice || null,  // Use null to indicate no filter by price
+    minPrice: filterBy.minPrice || null, // Use null to indicate no filter by price
   }
+}
+
+function _setNextPrevbookId(book) {
+  return query().then((books) => {
+    const bookIdx = books.findIndex((currbook) => currbook.id === book.id)
+    const nextbook = books[bookIdx + 1] ? books[bookIdx + 1] : books[0]
+    const prevbook = books[bookIdx - 1]
+      ? books[bookIdx - 1]
+      : books[books.length - 1]
+    book.nextbookId = nextbook.id
+    book.prevbookId = prevbook.id
+    return book
+  })
+}
+
+function get(bookId) {
+  return storageService.get(BOOK_KEY, bookId).then(_setNextPrevbookId)
 }

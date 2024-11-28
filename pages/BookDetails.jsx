@@ -72,7 +72,14 @@ export function BookDetails() {
         <img
           src={`../assets/BooksImages/${book.imgNum}.jpg`}
           alt="Book cover"
+
         />
+
+        <div className="btn-flex">
+          <Link to={`/book/bookdetails/${book.prevbookId}`}>Previous Book</Link>
+
+          <Link to={`/book/bookdetails/${book.nextbookId}`}>Next Book</Link>
+        </div>
       </div>
 
       <ReviewsForm addToReviews={addToReviews} bookId={params.bookid} />
