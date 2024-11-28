@@ -28,7 +28,7 @@ export function BookIndex() {
   }
 
   return (
-    <div>
+    <div >
 
       <Filter filterBy={filterBy} onFilter={handleFilterChange} />
       <BookList books={books} removeBook={removeBook} />

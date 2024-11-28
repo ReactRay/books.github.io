@@ -1,19 +1,19 @@
-*{
+* {
   margin: 0;
-  padding:0;
+  padding: 0;
   box-sizing: border-box;
 }
 
-.small-container{
+.small-container {
   padding: 10px;
   line-height: 1.6rem;
 }
 
- .btn{
+.btn {
   border: none;
   margin: 10px;
   margin-right: 10px;
-  padding:4px 6px;
+  padding: 4px 6px;
   background-color: var(--turk);
   color: var(--espresso);
   font-size: 1.4rem;
@@ -21,62 +21,67 @@
   border-radius: 8px;
 
 }
-.btn:hover{
+
+.btn:hover {
   background-color: var(--espresso);
   color: var(--light);
 }
-a{
-  
+
+a {
+
   color: var(--light);
   text-decoration: none;
   margin: 0 10px;
   width: 50px;
 
 }
-a:hover{
+
+a:hover {
 
   font-weight: 900;
 }
-.font{
-      font-family: "Edu AU VIC WA NT Pre", cursive;
-      color: var(--turk);
-     
+
+.font {
+  font-family: "Edu AU VIC WA NT Pre", cursive;
+  color: var(--turk);
+
 
 }
 
 
-.nav{
-    text-decoration: none;
+.nav {
+  text-decoration: none;
   color: var(--turk);
   font-weight: 700;
 }
 
-.nav:hover{
-   text-decoration: underline;
-   color:var(--espresso);
+.nav:hover {
+  text-decoration: underline;
+  color: var(--espresso);
   font-weight: 800;
-  
+
 }
+
 /* main colors */
 
-.active{
+.active {
   text-decoration: underline;
   color: var(--espresso);
   font-weight: 900;
   font-size: large;
 }
 
-:root{
+:root {
   --light: #E4E0E1;
   --nes: #D6C0B3;
   --espresso: #AB886D;
   --turk: #333;
-  
- 
-  
+
+
+
 }
 
-body{
+body {
   background-color: var(--espresso);
   color: var(--light);
   font-family: cursive;
@@ -86,26 +91,28 @@ body{
 }
 
 
-.header-flex{
+.header-flex {
   background-color: var(--turk);
   padding: 20px 50px;
-    display: flex;
-    justify-content: space-between;
+  display: flex;
+  justify-content: space-between;
   align-items: center;
   color: var(--nes);
-    box-shadow: 4px 5px 10px var(--turk);
-    font-family: "Edu AU VIC WA NT Pre", cursive;
+  box-shadow: 4px 5px 10px var(--turk);
+  font-family: "Edu AU VIC WA NT Pre", cursive;
 
 }
-.header-flex span{
-  color:var(--espresso);
-  
+
+.header-flex span {
+  color: var(--espresso);
+
 }
-.nav-flex{
-  display:flex;
+
+.nav-flex {
+  display: flex;
   gap: 20px;
   color: var(--nes);
-  padding:10px;
+  padding: 10px;
 
 }
 
@@ -115,120 +122,219 @@ body{
   margin: 0 auto;
 }
 
-.container h1{
+.container h1 {
   font-size: 3rem;
   margin-bottom: 20px;
   color: var(--turk);
 }
 
-.home-flex{
-  
+.home-flex {
+
   border-radius: 10px;
   margin-top: 20px;
   display: flex;
   justify-content: space-evenly;
   align-items: center;
-  padding:30px;
+  padding: 30px;
   background-color: var(--turk);
   text-align: center;
-    box-shadow: 4px 5px 20px var(--turk);
-    transition: all 2s 0.5s ;
- 
+  box-shadow: 4px 5px 20px var(--turk);
+  transition: all 2s 0.5s;
+
 }
 
-.home-flex:hover{
+.home-flex:hover {
   transform: scale(0.9);
-    
+
 
 }
-.home-box{
+
+.home-box {
   padding: 20px;
   background-color: var(--light);
   box-shadow: 5px 4px 20px var(--light);
   transition: all 1s ease;
 }
 
-.home-box:hover{
+.home-box:hover {
   transform: scale(1.4);
-    box-shadow: 5px 4px 20px var(--turk);
-    opacity: 0.85;
+  box-shadow: 5px 4px 20px var(--turk);
+  opacity: 0.85;
 }
 
 
 
-.book-img{
-  width: 200px;
-  height: 300px;
+.book-img {
+  width: 100px;
+  height: 150px;
 }
 
-img{
+.book-info {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  width: 60%;
+  margin: 0 auto;
+  background-color: var(--turk);
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 4px 4px 20px var(--turk);
+  transition: all 1s;
+}
+
+.book-info:hover {
+  transform: scale(1.1);
+
+}
+
+.book-info h2,
+.book-info h3 {
+  margin: 20px 5px;
+}
+
+.book-title {
+  width: 60%;
+  margin: 0 auto;
+}
+
+.review-form {
+
+  width: 60%;
+  margin: 20px auto;
+  background-color: var(--turk);
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 4px 4px 20px var(--turk);
+  transition: all 1s;
+}
+
+.review-form:hover {
+  transform: scale(1.1);
+
+}
+
+.review-form button,
+.book-box button {
+
+  background-color: var(--espresso);
+  color: var(--turk);
+  border: none;
+  border-radius: 8px;
+  padding: 5px 10px;
+  font-weight: 800;
+  font-family: cursive;
+  margin: 3px 4px;
+
+}
+
+.filter-btn {
+  background-color: var(--turk);
+  color: var(--light);
+  border: none;
+  border-radius: 8px;
+  padding: 5px 10px;
+  font-weight: 800;
+  font-family: cursive;
+  margin: 3px 4px;
+  font-size: 1.5rem;
+}
+
+.filter-btn:hover {
+  background-color: var(--nes);
+  color: var(--turk);
+}
+
+.review-form button:hover,
+.book-box button:hover {
+  background-color: var(--light);
+  color: var(--nes);
+}
+
+
+.review {
+  background-color: var(--nes);
+  padding: 10px;
+  margin: 10px;
+
+
+  color: var(--turk);
+  border-radius: 8px;
+}
+
+img {
   margin-top: 20px;
   max-width: 500px;
 
 }
 
-.form-flex{
+.form-flex {
   background-color: var(--turk);
   width: 100%;
   color: var(--nes);
   padding: 20px;
   border-radius: 8px;
-   box-shadow: 2px 3px 20px var(--turk);
-   display: flex;
-   flex-wrap: wrap;
-  
+  box-shadow: 2px 3px 20px var(--turk);
+  display: flex;
+  flex-wrap: wrap;
+
 }
 
-input{
+input {
   border: none;
   border-radius: 8px;
   border-bottom: #493628 solid 1px;
-  background-color:var(--light);
+  background-color: var(--light);
   padding: 8px;
   margin: 10px;
 }
 
 
-.book-flex{
+.book-flex {
   display: grid;
-  grid-template-columns: repeat(4,1fr);
+  grid-template-columns: repeat(4, 1fr);
   width: 95%;
   margin: 0 auto;
-  padding:40px;
+  padding: 40px;
   gap: 10px;
   background-color: var(--turk);
-  
+
   border-radius: 8px;
   box-shadow: 2px 3px 20px var(--turk);
 }
 
-.book-box{
+.book-box {
   padding: 20px;
   text-align: center;
- 
+
   background-color: var(--nes);
   color: var(--espresso);
   border-radius: 8px;
   line-height: 2rem;
   font-size: 25px;
   box-shadow: 2px 2px 20px var(--light);
- 
+
   transition: all 1s;
- 
+
 }
-.book-box:hover{
+
+.book-box p,
+.book-box h2,
+.book-box h3,
+.book-box h5 {
+  font-size: 1rem;
+}
+
+.book-box:hover {
   transform: scale(1.2);
   background-color: var(--light);
   color: var(--espresso);
-  rotate: 5deg;
-    box-shadow: 10px 10px 40px var(--light);
-    opacity: 0.8;
+  box-shadow: 10px 10px 40px var(--light);
+  opacity: 0.8;
 
-  
+
 }
 
-.book-box h2{
-  color:#AB886D
+.book-box h2 {
+  color: #AB886D
 }
 
 /* testing */
@@ -293,7 +399,7 @@ input{
 
 .book-price {
   background-color: var(--light);
-  padding:30px;
+  padding: 30px;
   border-radius: 8px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   margin: 30px;
@@ -313,6 +419,9 @@ input{
   font-weight: bold;
 }
 
+.price {
+  color: var(--turk);
+}
 
 
 
@@ -320,10 +429,11 @@ input{
 .btn-box {
   text-align: center;
 }
-.btn-link{
-  font-size:30px;
+
+.btn-link {
+  font-size: 30px;
   padding: 10px;
- 
+
 }
 
 .go-back-btn {
@@ -347,14 +457,14 @@ input{
 
 @media (max-width: 768px) {
 
- 
+
   .container {
-    
+
     /* padding: 20px; */
     width: 100%;
   }
 
- 
+
   .header-flex {
     flex-direction: column;
     align-items: flex-start;
@@ -365,15 +475,15 @@ input{
     font-size: 1.2rem;
   }
 
-  
+
   .home-flex {
     flex-direction: column;
     padding: 20px;
   }
 
-  
+
   .book-flex {
-    grid-template-columns: repeat(2, 1fr); 
+    grid-template-columns: repeat(2, 1fr);
     gap: 20px;
   }
 
@@ -385,14 +495,14 @@ input{
 
 
   img {
-    max-width: 100%; 
+    max-width: 100%;
     height: auto;
   }
 
- 
+
   .btn {
-    font-size: 1.2rem; 
-    padding: 6px 8px; 
+    font-size: 1.2rem;
+    padding: 6px 8px;
   }
 
 
@@ -403,10 +513,10 @@ input{
 
 
   input {
-    width: 100%; 
+    width: 100%;
   }
 
- 
+
   .container h1 {
     font-size: 2.5rem;
   }
@@ -418,24 +528,24 @@ input{
     font-size: 2rem;
   }
 
- 
+
   .btn {
     font-size: 1rem;
-    padding: 4px 6px; 
+    padding: 4px 6px;
   }
 
-  
+
   .home-box {
     padding: 15px;
   }
 
- 
+
   .book-flex {
     grid-template-columns: 1fr;
     padding: 20px;
   }
 
- 
+
   .form-flex {
     padding: 25px;
   }
@@ -445,33 +555,32 @@ input{
   }
 }
 
-.red{
+.red {
   color: lightcoral;
 }
-.green{
-  color:green;
+
+.green {
+  color: green;
 }
 
-.span{
+.span {
   color: var(--espresso);
   font-size: 1.8rem;
   font-weight: 800;
 }
 
-.sale-tag{
+.sale-tag {
   color: red;
 
 
 }
 
-.sale{
+.sale {
   position: absolute;
-  left:90%;
+  left: 90%;
   top: 5%;
   rotate: 10deg;
-  color:red;
+  color: red;
   font-weight: 900;
   transform: scale(3);
 }
-
-

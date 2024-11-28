@@ -24,7 +24,7 @@ const dummyBooks = [
     language: 'English',
     listPrice: {
       amount: 15.99,
-      currencyCode: 'USD',
+      currencyCode: '$',
       isOnSale: false,
     },
     pageCount: 180,
@@ -41,7 +41,7 @@ const dummyBooks = [
     language: 'English',
     listPrice: {
       amount: 10.99,
-      currencyCode: 'USD',
+      currencyCode: '$',
       isOnSale: false,
     },
     pageCount: 281,
@@ -58,7 +58,7 @@ const dummyBooks = [
     language: 'English',
     listPrice: {
       amount: 12.49,
-      currencyCode: 'USD',
+      currencyCode: '$',
       isOnSale: true,
     },
     pageCount: 328,
@@ -75,7 +75,7 @@ const dummyBooks = [
     language: 'English',
     listPrice: {
       amount: 9.99,
-      currencyCode: 'USD',
+      currencyCode: '$',
       isOnSale: true,
     },
     pageCount: 279,
@@ -92,7 +92,7 @@ const dummyBooks = [
     language: 'English',
     listPrice: {
       amount: 14.99,
-      currencyCode: 'USD',
+      currencyCode: '$',
       isOnSale: false,
     },
     pageCount: 214,
@@ -109,7 +109,7 @@ const dummyBooks = [
     language: 'English',
     listPrice: {
       amount: 16.99,
-      currencyCode: 'USD',
+      currencyCode: '$',
       isOnSale: true,
     },
     pageCount: 310,
@@ -126,7 +126,7 @@ const dummyBooks = [
     language: 'English',
     listPrice: {
       amount: 13.50,
-      currencyCode: 'USD',
+      currencyCode: '$',
       isOnSale: false,
     },
     pageCount: 635,
@@ -143,7 +143,7 @@ const dummyBooks = [
     language: 'English',
     listPrice: {
       amount: 11.99,
-      currencyCode: 'USD',
+      currencyCode: '$',
       isOnSale: true,
     },
     pageCount: 268,
@@ -160,7 +160,7 @@ const dummyBooks = [
     language: 'Russian',
     listPrice: {
       amount: 19.99,
-      currencyCode: 'USD',
+      currencyCode: '$',
       isOnSale: false,
     },
     pageCount: 671,
@@ -177,7 +177,7 @@ const dummyBooks = [
     language: 'Portuguese',
     listPrice: {
       amount: 13.99,
-      currencyCode: 'USD',
+      currencyCode: '$',
       isOnSale: true,
     },
     pageCount: 208,

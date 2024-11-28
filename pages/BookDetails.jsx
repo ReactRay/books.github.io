@@ -1,86 +1,82 @@
 
 const { useState, useEffect } = React;
 const { Link, useParams } = ReactRouterDOM;
+import { reviewService } from "../services/reviews.service.js";
 import { bookService } from "../services/book.service.js";
+import { ReviewsForm } from "../cmps/ReviewsForm.jsx";
+import { Reviews } from "../cmps/Reviews.jsx";
 
 export function BookDetails() {
-  const [book, setBook] = useState(null)
-  const params = useParams()
+  const [book, setBook] = useState(null);
+  const [reviews, setReviews] = useState([]);
+  const params = useParams();
 
   useEffect(() => {
-    loadBook(params.bookid)
-
-  }, [params.bookid])
+    const bookid = params.bookid; // Always use params.bookid
+    loadBook(bookid);
+    loadReviews(bookid);
+  }, [params.bookid]);
 
   function loadBook(bookid) {
+    bookService.get(bookid).then(setBook);
+  }
 
-    bookService.get(bookid).then((book) => {
-      setBook(book)
+  function loadReviews(bookid) {
+    reviewService.query(bookid).then(setReviews); // Use params.bookid
+  }
 
-    })
+  function addToReviews(review) {
+    reviewService.post(review).then(() =>
+      setReviews((prev) => [...prev, review])
+    );
   }
 
   function checkDate() {
+    if (!book) return "";
     const publishedDate = new Date(book.publishedDate);
     const currentDate = new Date();
-    const timeDifference = currentDate - publishedDate;
-    const yearsDifference = timeDifference / (1000 * 60 * 60 * 24 * 365);
+    const yearsDifference =
+      (currentDate - publishedDate) / (1000 * 60 * 60 * 24 * 365);
 
     if (yearsDifference > 10) {
       return "Vintage";
     } else if (yearsDifference < 1) {
       return "New";
     }
-    return '';
+    return "";
   }
 
-
-  if (!book) return <h1>Loading...</h1>
+  if (!book) return <h1>Loading...</h1>;
 
   return (
     <div className="container">
-      <h1 className="book-title">Book: {book.title}</h1>
-      <div style={{ position: 'relative' }}>
-        {book.listPrice.isOnSale && <span className="sale">On Sale!</span>}
-
-        <div className="book-details-box">
-          <h3 className="section-title">About this book:</h3>
-          <p className="book-description">{book.description}</p>
-
-          <div className="book-meta">
-            <h4 className="meta-title">Authors:</h4>
-            <p className="meta-content">{book.authors.join(', ')}</p>
-
-            <h4 className="meta-title">Categories:</h4>
-            <p className="meta-content">{book.categories.join(', ')}</p>
-
-            <h4 className="meta-title">Published Date:</h4>
-            <p className="meta-content">{new Date(book.publishedDate).toLocaleDateString()} <span className="span">{checkDate()}</span></p>
-
-            <h4 className="meta-title">Language:</h4>
-            <p className="meta-content">{book.language}</p>
-
-            <h4 className="meta-title">Page Count:</h4>
-            <p className="meta-content">{book.pageCount}<span className="span"> {book.pageCount > 500 ? 'Serious Reading' : book.pageCount > 200 ? 'Decent Reading' : book.pageCount < 100 ? 'Light Reading' : ''}</span></p>
-          </div>
-
-          <div className="book-price">
-            <h4 >Price:</h4>
-            <p><span className={book.listPrice.amount > 150 ? 'red' : book.listPrice.amount < 20 ? 'green' : ''}>{book.listPrice.amount} </span>{book.listPrice.currencyCode}</p>
-            {book.listPrice.isOnSale && <span className="sale-tag">On Sale!</span>}
-          </div>
-          <div className="book-image">
-            <img src={`../assets/BooksImages/${book.imgNum}.jpg`} alt={book.title} className="book-img" />
-
-          </div>
-          <div className="btn-box">
-            <Link to={'/book'} className="go-back-btn">Go back</Link>
-          </div>
+      <h1 className="book-title">{book.title}</h1>
+      <div className="book-info">
+        <div>
+          <h3>Subtitle: {book.subtitle}</h3>
+          <h3>Authors: {book.authors.join(", ")}</h3>
+          <h3>
+            Publish Year: {book.publishedDate.substring(0, 4)}{" "}
+            <span className="span">{checkDate()}</span>
+          </h3>
+          <h3>Description: {book.description}</h3>
+          <h3>Categories: {book.categories.join(", ")}</h3>
+          <h3>Page Count: {book.pageCount} <span className="span">{book.pageCount > 500 ? 'Serious Reading ' : book.pageCount > 200 ? 'Decent Reading' : book.PageCount < 100 ? ' Light Reading' : ''}</span></h3>
+          <h3>Language: {book.language}</h3>
+          <h2>
+            Price: {book.listPrice.amount}
+            {book.listPrice.currencyCode}
+          </h2>
+          {book.listPrice.isOnSale && <h2 className="red">ON SALE!</h2>}
         </div>
-
-
-
+        <img
+          src={`../assets/BooksImages/${book.imgNum}.jpg`}
+          alt="Book cover"
+        />
       </div>
+
+      <ReviewsForm addToReviews={addToReviews} bookId={params.bookid} />
+      <Reviews reviews={reviews} />
     </div>
-  )
+  );
 }

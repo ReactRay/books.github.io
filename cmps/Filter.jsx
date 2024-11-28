@@ -121,7 +121,7 @@ export function Filter({ filterBy, onFilter }) {
                 <div>
                 </div>
             </form>
-            <button className="btn btn-link " onClick={() => navigate('/book/bookedit')}>Add a new Book</button>
+            <button className="filter-btn" onClick={() => navigate('/book/bookedit')}>Add a new Book</button>
         </div>
     );
 }
