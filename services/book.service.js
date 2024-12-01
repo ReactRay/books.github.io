@@ -239,9 +239,10 @@ async function query(filterBy = {}) {
   }
 
   if (filterBy.isOnSale !== undefined) {
-    books = books.filter(
-      (book) => book.listPrice.isOnSale === filterBy.isOnSale
-    )
+    if (filterBy.isOnSale === true)
+      books = books.filter(
+        (book) => book.listPrice.isOnSale === filterBy.isOnSale
+      )
   }
 
   return books

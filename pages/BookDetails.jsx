@@ -63,7 +63,7 @@ export function BookDetails() {
 
   return (
     <div className="container">
-      <h1 className="book-title">{book.title}</h1>
+      <h1 className="book-title fly">{book.title}</h1>
       <div className="book-info">
         <div>
           <h3>Subtitle: {book.subtitle}</h3>
@@ -80,16 +80,16 @@ export function BookDetails() {
             Price: {book.listPrice.amount}
             {book.listPrice.currencyCode}
           </h2>
-          {book.listPrice.isOnSale && <h2 className="red">ON SALE!</h2>}
+          {book.listPrice.isOnSale && <h2 className="red fly">ON SALE!</h2>}
           <LongTxt txt={book.description} length={20} />
         </div>
-        <img src={`https://picsum.photos/id/${book.imgNum + 33}/200/300`} alt={book.title} className="book-img" />
+        {/* <img src={`https://picsum.photos/id/${book.imgNum + 33}/200/300`} alt={book.title} className="book-img" /> */}
 
-        {/* <img
+        <img
           src={`../assets/BooksImages/${book.imgNum}.jpg`}
           alt="Book cover"
 
-        /> */}
+        />
 
         <div className="btn-flex">
           <Link to={`/book/bookdetails/${book.prevbookId}`}>Previous Book</Link>

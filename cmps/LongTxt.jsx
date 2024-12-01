@@ -1,7 +1,7 @@
 const { useState } = React
 
 
-export function LongTxt({ txt, length = 100 }) {
+export function LongTxt({ txt, length = 40 }) {
     const [isExpanded, setIsExpanded] = useState(false);
 
     function toggleText() {
@@ -9,7 +9,7 @@ export function LongTxt({ txt, length = 100 }) {
     };
 
     return (
-        <div>
+        <div >
             {isExpanded ? txt : `${txt.slice(0, length)}${txt.length > length ? '...' : ''}`}
             {txt.length > length && (
                 <span

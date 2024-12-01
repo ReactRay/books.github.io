@@ -287,6 +287,14 @@ body {
 
 }
 
+.fly {
+  transition: all 1s;
+}
+
+.fly:hover {
+  transform: scale(1.1);
+}
+
 .filter-btn {
   background-color: var(--turk);
   color: var(--light);

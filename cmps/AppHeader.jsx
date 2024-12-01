@@ -6,15 +6,15 @@ export function AppHeader() {
     // nav bar will be here
     return (
         <header className="header-flex">
-            <div><h2>Miss<span>Book </span>📔</h2></div>
+            <div><h2 className="fly">Miss<span>Book </span>📔</h2></div>
 
             <div className="nav-flex">
-                <NavLink  to="/home">Home</NavLink>
-                <NavLink   to="/about">About</NavLink>
-                <NavLink   to="/book" >Books</NavLink>
+                <NavLink to="/home">Home</NavLink>
+                <NavLink to="/about">About</NavLink>
+                <NavLink to="/book" >Books</NavLink>
             </div>
 
-          
+
         </header>
     )
 }

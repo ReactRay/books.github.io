@@ -33,8 +33,8 @@ export function Filter({ filterBy, onFilter }) {
 
     return (
         <div className="container">
-            <h1 className='font'>It's all about books</h1>
-            <h2 className="filter-h2" onClick={() => setExpand((prev) => !prev)}>{expand ? 'Hide filter' : 'Show filter'}</h2>
+            <h1 className='font fly'>It's all about books</h1>
+            <h2 className="filter-h2 fly" onClick={() => setExpand((prev) => !prev)}>{expand ? 'Hide filter' : 'Show filter'}</h2>
             {expand && <form className="form-flex" onSubmit={handleSubmit}>
                 <div>
                     <label>Title:</label>
