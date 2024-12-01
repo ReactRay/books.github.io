@@ -5,6 +5,7 @@ import { reviewService } from "../services/reviews.service.js";
 import { bookService } from "../services/book.service.js";
 import { ReviewsForm } from "../cmps/ReviewsForm.jsx";
 import { Reviews } from "../cmps/Reviews.jsx";
+import { LongTxt } from "../cmps/LongTxt.jsx";
 
 export function BookDetails() {
   const [book, setBook] = useState(null);
@@ -12,21 +13,29 @@ export function BookDetails() {
   const params = useParams();
 
   useEffect(() => {
-    const bookid = params.bookid; // Always use params.bookid
-    loadBook(bookid);
-    loadReviews(bookid);
+
+    loadBook(params.bookid);
+    console.log('render in effect1')
+
   }, [params.bookid]);
+
+  useEffect(() => {
+    console.log('render in effect 2')
+    loadReviews(params.bookid)
+  }, [])
+
+  console.log('render')
 
   function loadBook(bookid) {
     bookService.get(bookid).then(setBook);
   }
 
   function loadReviews(bookid) {
-    reviewService.query(bookid).then(setReviews); // Use params.bookid
+    reviewService.query(bookid).then(setReviews);
   }
 
   function addToReviews(review) {
-    reviewService.post(review).then(() =>
+    reviewService.post(review).then((review) =>
       setReviews((prev) => [...prev, review])
     );
   }
@@ -63,7 +72,7 @@ export function BookDetails() {
             Publish Year: {book.publishedDate.substring(0, 4)}{" "}
             <span className="span">{checkDate()}</span>
           </h3>
-          <h3>Description: {book.description}</h3>
+
           <h3>Categories: {book.categories.join(", ")}</h3>
           <h3>Page Count: {book.pageCount} <span className="span">{book.pageCount > 500 ? 'Serious Reading ' : book.pageCount > 200 ? 'Decent Reading' : book.PageCount < 100 ? ' Light Reading' : ''}</span></h3>
           <h3>Language: {book.language}</h3>
@@ -72,6 +81,7 @@ export function BookDetails() {
             {book.listPrice.currencyCode}
           </h2>
           {book.listPrice.isOnSale && <h2 className="red">ON SALE!</h2>}
+          <LongTxt txt={book.description} length={20} />
         </div>
         <img
           src={`../assets/BooksImages/${book.imgNum}.jpg`}

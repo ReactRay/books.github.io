@@ -90,6 +90,33 @@ body {
 
 }
 
+.long-txt {
+  color: var(--espresso);
+  cursor: pointer;
+  margin-left: 5px;
+}
+
+.filter-h2 {
+  cursor: pointer;
+  margin: 20px;
+  font-size: 2rem;
+  padding: 10px;
+}
+
+.filter-h2:hover {
+  color: var(--turk);
+}
+
+.footer {
+  text-align: center;
+  color: var(--espresso);
+  background-color: var(--turk);
+  padding: 20px;
+  margin-top: 30px;
+  box-shadow: -4px -5px 10px var(--turk);
+
+
+}
 
 .header-flex {
   background-color: var(--turk);

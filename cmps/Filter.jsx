@@ -5,6 +5,7 @@ import { debounce } from "../services/util.service.js";
 
 export function Filter({ filterBy, onFilter }) {
     const [filter, setFilter] = useState(filterBy || {});
+    const [expand, setExpand] = useState(false)
     const onDebounce = useRef(debounce(onFilter)).current;
 
     const navigate = useNavigate();
@@ -33,8 +34,8 @@ export function Filter({ filterBy, onFilter }) {
     return (
         <div className="container">
             <h1 className='font'>It's all about books</h1>
-            <h3>Filter</h3>
-            <form className="form-flex" onSubmit={handleSubmit}>
+            <h2 className="filter-h2" onClick={() => setExpand((prev) => !prev)}>Filter</h2>
+            {expand && <form className="form-flex" onSubmit={handleSubmit}>
                 <div>
                     <label>Title:</label>
                     <input
@@ -120,7 +121,8 @@ export function Filter({ filterBy, onFilter }) {
                 </div>
                 <div>
                 </div>
-            </form>
+            </form>}
+
             <button className="filter-btn" onClick={() => navigate('/book/bookedit')}>Add a new Book</button>
         </div>
     );

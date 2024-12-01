@@ -8,10 +8,8 @@ export function ReviewsForm({ addToReviews, bookId }) {
     function handleSubmit(e) {
         e.preventDefault();
 
-        // Pass the review to the parent
         addToReviews(review);
 
-        // Reset the form fields (retain bookId)
         setReview({ user: '', review: '', bookId });
     }
 

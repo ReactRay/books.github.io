@@ -293,7 +293,7 @@ function getDefaultFilter(
   return {
     title: filterBy.title || '',
     description: filterBy.description || '',
-    minPrice: filterBy.minPrice || null, // Use null to indicate no filter by price
+    minPrice: filterBy.minPrice || null,
   }
 }
 
