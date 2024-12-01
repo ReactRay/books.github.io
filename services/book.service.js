@@ -227,7 +227,7 @@ async function query(filterBy = {}) {
   }
 
   if (filterBy.pageCount && !isNaN(filterBy.pageCount)) {
-    books = books.filter((book) => book.pageCount === +filterBy.pageCount)
+    books = books.filter((book) => book.pageCount >= +filterBy.pageCount)
   }
 
   if (filterBy.minPrice && !isNaN(filterBy.minPrice)) {

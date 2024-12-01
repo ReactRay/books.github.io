@@ -38,6 +38,7 @@ export function Team() {
 
     return (
         <div>
+            <button className="btn" onClick={() => navigate('/about')}>close</button>
             <div className="team-container">
                 {team.map((team) => {
                     return (
@@ -50,7 +51,7 @@ export function Team() {
                     )
                 })}
             </div>
-            <button className="btn" onClick={() => navigate('/about')}>close</button>
+
         </div>
     )
 }

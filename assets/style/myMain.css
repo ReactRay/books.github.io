@@ -295,13 +295,14 @@ body {
   padding: 5px 10px;
   font-weight: 800;
   font-family: cursive;
-  margin: 3px 4px;
+  margin-top: 20px;
   font-size: 1.5rem;
+  transition: all 1s;
 }
 
 .filter-btn:hover {
-  background-color: var(--nes);
-  color: var(--turk);
+  color: var(--espresso);
+  transform: scale(1.1);
 }
 
 .review-form button:hover,
@@ -336,7 +337,12 @@ img {
   box-shadow: 2px 3px 20px var(--turk);
   display: flex;
   flex-wrap: wrap;
+  transition: all 2s;
 
+}
+
+.form-flex:hover {
+  transform: scale(1.1);
 }
 
 input {

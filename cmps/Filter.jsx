@@ -34,7 +34,7 @@ export function Filter({ filterBy, onFilter }) {
     return (
         <div className="container">
             <h1 className='font'>It's all about books</h1>
-            <h2 className="filter-h2" onClick={() => setExpand((prev) => !prev)}>Filter</h2>
+            <h2 className="filter-h2" onClick={() => setExpand((prev) => !prev)}>{expand ? 'Hide filter' : 'Show filter'}</h2>
             {expand && <form className="form-flex" onSubmit={handleSubmit}>
                 <div>
                     <label>Title:</label>
@@ -82,7 +82,7 @@ export function Filter({ filterBy, onFilter }) {
                     />
                 </div>
                 <div>
-                    <label>Page Count:</label>
+                    <label>Minimum Page Count:</label>
                     <input
                         type="number"
                         name="pageCount"

@@ -83,11 +83,13 @@ export function BookDetails() {
           {book.listPrice.isOnSale && <h2 className="red">ON SALE!</h2>}
           <LongTxt txt={book.description} length={20} />
         </div>
-        <img
+        <img src={`https://picsum.photos/id/${book.imgNum + 33}/200/300`} alt={book.title} className="book-img" />
+
+        {/* <img
           src={`../assets/BooksImages/${book.imgNum}.jpg`}
           alt="Book cover"
 
-        />
+        /> */}
 
         <div className="btn-flex">
           <Link to={`/book/bookdetails/${book.prevbookId}`}>Previous Book</Link>
