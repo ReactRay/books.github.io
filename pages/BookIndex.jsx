@@ -24,9 +24,13 @@ export function BookIndex() {
   function removeBook(bookId) {
     bookService
       .remove(bookId)
-      .then(() => setBooks((prev) => prev.filter((book) => book.id !== bookId)));
+      .then(() => setBooks((prev) => prev.filter((book) => book.id !== bookId)))
   }
 
+  console.log(books);
+
+
+  if (!books.length) return <div>Loding books</div>
   return (
     <div >
 

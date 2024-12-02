@@ -33,60 +33,15 @@ export function Filter({ filterBy, onFilter }) {
 
     return (
         <div className="container">
-            <h1 className='font fly'>It's all about books</h1>
-            <h2 className="filter-h2 fly" onClick={() => setExpand((prev) => !prev)}>{expand ? 'Hide filter' : 'Show filter'}</h2>
-            {expand && <form className="form-flex" onSubmit={handleSubmit}>
+            <h1 className='font '>It's all about books</h1>
+            <button className="btn " onClick={() => setExpand((prev) => !prev)}>{expand ? 'Hide filter' : 'Show filter'}</button>
+            <form className="form-flex" onSubmit={handleSubmit}>
                 <div>
                     <label>Title:</label>
                     <input
                         type="text"
                         name="title"
                         value={filter.title || ''}
-                        onChange={handleInputChange}
-                    />
-                </div>
-                <div>
-                    <label>Subtitle:</label>
-                    <input
-                        type="text"
-                        name="subtitle"
-                        value={filter.subtitle || ''}
-                        onChange={handleInputChange}
-                    />
-                </div>
-                <div>
-                    <label>Authors:</label>
-                    <input
-                        type="text"
-                        name="authors"
-                        value={filter.authors || ''}
-                        onChange={handleInputChange}
-                    />
-                </div>
-                <div>
-                    <label>Description:</label>
-                    <input
-                        type="text"
-                        name="description"
-                        value={filter.description || ''}
-                        onChange={handleInputChange}
-                    />
-                </div>
-                <div>
-                    <label>Categories:</label>
-                    <input
-                        type="text"
-                        name="categories"
-                        value={filter.categories || ''}
-                        onChange={handleInputChange}
-                    />
-                </div>
-                <div>
-                    <label>Minimum Page Count:</label>
-                    <input
-                        type="number"
-                        name="pageCount"
-                        value={filter.pageCount || ''}
                         onChange={handleInputChange}
                     />
                 </div>
@@ -108,20 +63,69 @@ export function Filter({ filterBy, onFilter }) {
                         onChange={handleInputChange}
                     />
                 </div>
-                <div>
-                    <label>
-                        On Sale:
+                {expand && <div className="form-flex">
+                    <div>
+                        <label>Subtitle:</label>
                         <input
-                            type="checkbox"
-                            name="isOnSale"
-                            checked={filter.isOnSale || false}
-                            onChange={handleCheckboxChange}
+                            type="text"
+                            name="subtitle"
+                            value={filter.subtitle || ''}
+                            onChange={handleInputChange}
                         />
-                    </label>
-                </div>
-                <div>
-                </div>
-            </form>}
+                    </div>
+                    <div>
+                        <label>Authors:</label>
+                        <input
+                            type="text"
+                            name="authors"
+                            value={filter.authors || ''}
+                            onChange={handleInputChange}
+                        />
+                    </div>
+                    <div>
+                        <label>Description:</label>
+                        <input
+                            type="text"
+                            name="description"
+                            value={filter.description || ''}
+                            onChange={handleInputChange}
+                        />
+                    </div>
+                    <div>
+                        <label>Categories:</label>
+                        <input
+                            type="text"
+                            name="categories"
+                            value={filter.categories || ''}
+                            onChange={handleInputChange}
+                        />
+                    </div>
+                    <div>
+                        <label>Minimum Page Count:</label>
+                        <input
+                            type="number"
+                            name="pageCount"
+                            value={filter.pageCount || ''}
+                            onChange={handleInputChange}
+                        />
+                    </div>
+
+                    <div>
+                        <label>
+                            On Sale:
+                            <input
+                                type="checkbox"
+                                name="isOnSale"
+                                checked={filter.isOnSale || false}
+                                onChange={handleCheckboxChange}
+                            />
+                        </label>
+                    </div>
+                    <div>
+                    </div>
+                </div>}
+
+            </form>
 
             <button className="filter-btn" onClick={() => navigate('/book/bookedit')}>Add a new Book</button>
         </div>

@@ -188,64 +188,73 @@ const dummyBooks = [
   },
 ]
 
+_createBooks()
+
 async function query(filterBy = {}) {
-  let books = await storageService.query(BOOK_KEY)
-  if (!books || !books.length) {
-    books = dummyBooks
-    for (const book of dummyBooks) {
-      await storageService.post(BOOK_KEY, book)
+  try {
+    let books = await storageService.query(BOOK_KEY)
+
+    // if (!books || !books.length) {
+    //   books = dummyBooks
+    //   for (const book of dummyBooks) {
+    //     await storageService.post(BOOK_KEY, book)
+    //   }
+    // }
+
+    if (filterBy.title) {
+      const regExp = new RegExp(filterBy.title, 'i')
+      books = books.filter((book) => regExp.test(book.title))
     }
-  }
 
-  if (filterBy.title) {
-    const regExp = new RegExp(filterBy.title, 'i')
-    books = books.filter((book) => regExp.test(book.title))
-  }
+    if (filterBy.subtitle) {
+      const regExp = new RegExp(filterBy.subtitle, 'i')
+      books = books.filter((book) => regExp.test(book.subtitle))
+    }
 
-  if (filterBy.subtitle) {
-    const regExp = new RegExp(filterBy.subtitle, 'i')
-    books = books.filter((book) => regExp.test(book.subtitle))
-  }
-
-  if (filterBy.authors) {
-    const regExp = new RegExp(filterBy.authors, 'i')
-    books = books.filter((book) =>
-      book.authors.some((author) => regExp.test(author))
-    )
-  }
-
-  if (filterBy.description) {
-    const regExp = new RegExp(filterBy.description, 'i')
-    books = books.filter((book) => regExp.test(book.description))
-  }
-
-  if (filterBy.categories) {
-    const regExp = new RegExp(filterBy.categories, 'i')
-    books = books.filter((book) =>
-      book.categories.some((category) => regExp.test(category))
-    )
-  }
-
-  if (filterBy.pageCount && !isNaN(filterBy.pageCount)) {
-    books = books.filter((book) => book.pageCount >= +filterBy.pageCount)
-  }
-
-  if (filterBy.minPrice && !isNaN(filterBy.minPrice)) {
-    books = books.filter((book) => book.listPrice.amount >= +filterBy.minPrice)
-  }
-
-  if (filterBy.maxPrice && !isNaN(filterBy.maxPrice)) {
-    books = books.filter((book) => book.listPrice.amount <= +filterBy.maxPrice)
-  }
-
-  if (filterBy.isOnSale !== undefined) {
-    if (filterBy.isOnSale === true)
-      books = books.filter(
-        (book) => book.listPrice.isOnSale === filterBy.isOnSale
+    if (filterBy.authors) {
+      const regExp = new RegExp(filterBy.authors, 'i')
+      books = books.filter((book) =>
+        book.authors.some((author) => regExp.test(author))
       )
-  }
+    }
 
-  return books
+    if (filterBy.description) {
+      const regExp = new RegExp(filterBy.description, 'i')
+      books = books.filter((book) => regExp.test(book.description))
+    }
+
+    if (filterBy.categories) {
+      const regExp = new RegExp(filterBy.categories, 'i')
+      books = books.filter((book) =>
+        book.categories.some((category) => regExp.test(category))
+      )
+    }
+
+    if (filterBy.pageCount && !isNaN(filterBy.pageCount)) {
+      books = books.filter((book) => book.pageCount >= +filterBy.pageCount)
+    }
+
+    if (filterBy.minPrice && !isNaN(filterBy.minPrice)) {
+      books = books.filter(
+        (book) => book.listPrice.amount >= +filterBy.minPrice
+      )
+    }
+
+    if (filterBy.maxPrice && !isNaN(filterBy.maxPrice)) {
+      books = books.filter(
+        (book) => book.listPrice.amount <= +filterBy.maxPrice
+      )
+    }
+
+    if (filterBy.isOnSale !== undefined) {
+      if (filterBy.isOnSale === true)
+        books = books.filter(
+          (book) => book.listPrice.isOnSale === filterBy.isOnSale
+        )
+    }
+
+    return books
+  } catch (error) {}
 }
 
 function remove(bookId) {
@@ -260,31 +269,19 @@ function save(book) {
   }
 }
 
-function getEmptyBook(
-  title = '',
-  subtitle = '',
-  authors = [],
-  description = '',
-  categories = [],
-  imgNum = 0,
-  language = 'Unknown',
-  amount = 0,
-  currencyCode = 'USD',
-  isOnSale = false,
-  pageCount = 0,
-  publishedDate = 'Unknown'
-) {
+function getEmptyBook() {
   return {
-    title,
-    subtitle,
-    authors,
-    description,
-    categories,
-    imgNum,
-    language,
-    listPrice: { amount, currencyCode, isOnSale },
-    pageCount,
-    publishedDate,
+    id: '',
+    title: '',
+    subtitle: '',
+    authors: '',
+    publishedDate: '',
+    description: '',
+    pageCount: '',
+    categories: '',
+    imgNum: Math.floor(Math.random() * 20) + 1,
+    language: '',
+    listPrice: { amount: 0, currencyCode: '', isOnSale: false },
   }
 }
 
@@ -313,4 +310,13 @@ function _setNextPrevbookId(book) {
 
 function get(bookId) {
   return storageService.get(BOOK_KEY, bookId).then(_setNextPrevbookId)
+}
+
+function _createBooks() {
+  let books = utilService.loadFromStorage(BOOK_KEY)
+  if (!books || !books.length) {
+    books = dummyBooks
+  }
+
+  utilService.saveToStorage(BOOK_KEY, books)
 }

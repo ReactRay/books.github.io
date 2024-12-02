@@ -6,23 +6,24 @@ import { bookService } from "../services/book.service.js";
 import { ReviewsForm } from "../cmps/ReviewsForm.jsx";
 import { Reviews } from "../cmps/Reviews.jsx";
 import { LongTxt } from "../cmps/LongTxt.jsx";
+import { BookInfo } from "../cmps/BookInfo.jsx";
 
 export function BookDetails() {
   const [book, setBook] = useState(null);
   const [reviews, setReviews] = useState([]);
-  const params = useParams();
+  const params = useParams()
 
   useEffect(() => {
+    loadReviews(params.bookid)
 
     loadBook(params.bookid);
     console.log('render in effect1')
 
-  }, [params.bookid]);
+  }, [params.bookid])
 
-  useEffect(() => {
-    console.log('render in effect 2')
-    loadReviews(params.bookid)
-  }, [])
+  // useEffect(() => {
+  //   console.log('render in effect 2')
+  // }, [])
 
   console.log('render')
 
@@ -63,6 +64,8 @@ export function BookDetails() {
 
   return (
     <div className="container">
+      {/* <BookInfo book={book} checkDate={checkDate} /> */}
+
       <h1 className="book-title fly">{book.title}</h1>
       <div className="book-info">
         <div>

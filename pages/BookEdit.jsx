@@ -3,25 +3,7 @@ const { useNavigate, Link, useParams } = ReactRouterDOM;
 import { bookService } from "../services/book.service.js";
 
 export function BookEdit() {
-  const [book, setBook] = useState(() => ({
-    id: "",
-    title: "",
-    subtitle: "",
-    authors: "",
-    publishedDate: "",
-    description: "",
-    pageCount: "",
-    categories: "",
-    imgNum: Math.floor(Math.random() * 20) + 1,
-    language: "",
-    listPrice: null,
-  }));
-
-  const [listPrice, setListPrice] = useState({
-    amount: "",
-    currencyCode: "EUR",
-    isOnSale: false,
-  });
+  const [book, setBook] = useState(bookService.getEmptyBook);
 
   const navigate = useNavigate();
   const params = useParams();
@@ -30,49 +12,51 @@ export function BookEdit() {
   useEffect(() => {
     if (bookid) {
       loadBook(bookid);
-
-      console.log(bookid)
     }
   }, [bookid]);
 
   function handleChange({ target }) {
-
-    const { name, value } = target;
-
-    setBook((prev) => ({ ...prev, [name]: value }));
-  }
-
-  function handleListPriceChange({ target }) {
     const { name, value, type, checked } = target;
+    const newValue = type === "checkbox" ? checked : value;
 
-    const val = type === "checkbox" ? checked : value;
-
-    setListPrice((prev) => ({ ...prev, [name]: val }));
+    setBook((prev) => {
+      if (name in prev.listPrice) {
+        return {
+          ...prev,
+          listPrice: { ...prev.listPrice, [name]: newValue },
+        };
+      }
+      return {
+        ...prev,
+        [name]: newValue,
+      };
+    });
   }
 
   function handleSubmit(e) {
     e.preventDefault();
 
-    const fulldBook = {
+    const fullBook = {
       ...book,
       authors: book.authors.split(",").map((author) => author.trim()),
       categories: book.categories.split(",").map((category) => category.trim()),
-      listPrice,
     };
 
-
-    bookService.save(fulldBook).then(() => navigate("/book"));
+    bookService.save(fullBook).then(() => navigate("/book"));
   }
 
   function loadBook(bookid) {
-
     bookService.get(bookid).then((myBook) => {
       setBook({
         ...myBook,
         authors: myBook.authors.join(", "),
         categories: myBook.categories.join(", "),
+        listPrice: myBook.listPrice || {
+          amount: "",
+          currencyCode: "EUR",
+          isOnSale: false,
+        },
       });
-      setListPrice(myBook.listPrice);
     });
   }
 
@@ -154,8 +138,8 @@ export function BookEdit() {
           <input
             type="number"
             name="amount"
-            value={listPrice.amount}
-            onChange={handleListPriceChange}
+            value={book.listPrice.amount}
+            onChange={handleChange}
           />
         </div>
         <div>
@@ -163,8 +147,8 @@ export function BookEdit() {
           <input
             type="text"
             name="currencyCode"
-            value={listPrice.currencyCode}
-            onChange={handleListPriceChange}
+            value={book.listPrice.currencyCode}
+            onChange={handleChange}
           />
         </div>
         <div>
@@ -172,8 +156,8 @@ export function BookEdit() {
           <input
             type="checkbox"
             name="isOnSale"
-            checked={listPrice.isOnSale}
-            onChange={handleListPriceChange}
+            checked={book.listPrice.isOnSale}
+            onChange={handleChange}
           />
         </div>
         <div>

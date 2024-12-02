@@ -10,8 +10,11 @@ export function BookList({ books, removeBook }) {
           <div key={book.id} className="book-item">
             <BookPreview book={book} removeBook={removeBook} imgNum={book.imgNum} />
 
+
+
           </div>
         ))}
+
       </div>
     </div>
   )

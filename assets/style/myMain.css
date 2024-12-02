@@ -287,13 +287,7 @@ body {
 
 }
 
-.fly {
-  transition: all 1s;
-}
 
-.fly:hover {
-  transform: scale(1.1);
-}
 
 .filter-btn {
   background-color: var(--turk);
@@ -338,20 +332,17 @@ img {
 
 .form-flex {
   background-color: var(--turk);
-  width: 100%;
   color: var(--nes);
+  width: 70%;
   padding: 20px;
   border-radius: 8px;
   box-shadow: 2px 3px 20px var(--turk);
   display: flex;
   flex-wrap: wrap;
-  transition: all 2s;
 
 }
 
-.form-flex:hover {
-  transform: scale(1.1);
-}
+
 
 input {
   border: none;
