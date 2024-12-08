@@ -678,3 +678,41 @@ input {
   font-weight: 900;
   transform: scale(3);
 }
+
+
+.user-msg {
+  position: fixed;
+  top: 6.5rem;
+  right: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  margin: 0.5rem;
+  min-width: 100px;
+  max-width: 350px;
+  border-radius: 0.5rem;
+  background-color: #f1f1f1;
+  box-shadow: 2px 2px 5px 0 rgba(0, 0, 0, 0.1);
+  animation: slideIn 0.3s ease-in-out;
+  text-align: center;
+}
+
+.success {
+  background-color: lightgreen;
+}
+
+.error {
+  background-color: lightcoral;
+}
+
+.close-btn {
+  padding: 5px;
+  border: none;
+  border-radius: 8px;
+  background-color: var(--nes);
+}
+
+.close-btn:hover {
+  background-color: var(--turk);
+  color: var(--nes)
+}

@@ -1,5 +1,6 @@
 
 const { Link, NavLink, Outlet } = ReactRouterDOM
+import { Notification } from "../cmps/Notification.jsx"
 
 
 export function About() {
@@ -13,6 +14,7 @@ export function About() {
                 <Link to={'/about/team'}><button className=" btn fly">our team</button></Link>
             </section>
             <Outlet />
+            <Notification msg={'hi'} />
         </div>
     )
 }

@@ -10,6 +10,7 @@ export const bookService = {
   save,
   getEmptyBook,
   getDefaultFilter,
+  getFilterFromSrcParams,
 }
 
 const dummyBooks = [
@@ -319,4 +320,30 @@ function _createBooks() {
   }
 
   utilService.saveToStorage(BOOK_KEY, books)
+}
+
+function getFilterFromSrcParams(srcParams) {
+  const title = srcParams.get('title') || ''
+  const subtitle = srcParams.get('subtitle') || ''
+  const authors = srcParams.get('authors') || ''
+  const description = srcParams.get('description') || ''
+  const categories = srcParams.get('categories') || ''
+  const minPageCount = srcParams.get('minPageCount') || ''
+  const maxPageCount = srcParams.get('maxPageCount') || ''
+  const minPrice = srcParams.get('minPrice') || ''
+  const maxPrice = srcParams.get('maxPrice') || ''
+  const isOnSale = srcParams.get('isOnSale') === 'true'
+
+  return {
+    title,
+    subtitle,
+    authors,
+    description,
+    categories,
+    minPageCount: minPageCount ? +minPageCount : undefined,
+    maxPageCount: maxPageCount ? +maxPageCount : undefined,
+    minPrice: minPrice ? +minPrice : undefined,
+    maxPrice: maxPrice ? +maxPrice : undefined,
+    isOnSale: srcParams.has('isOnSale') ? isOnSale : undefined,
+  }
 }
