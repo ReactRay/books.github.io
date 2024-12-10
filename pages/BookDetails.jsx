@@ -17,7 +17,7 @@ export function BookDetails() {
     loadReviews(params.bookid)
 
     loadBook(params.bookid);
-    console.log('render in effect1')
+
 
   }, [params.bookid])
 
@@ -25,11 +25,12 @@ export function BookDetails() {
   //   console.log('render in effect 2')
   // }, [])
 
-  console.log('render')
 
   function loadBook(bookid) {
     bookService.get(bookid).then(setBook);
+
   }
+  console.log(book)
 
   function loadReviews(bookid) {
     reviewService.query(bookid).then(setReviews);
@@ -60,6 +61,12 @@ export function BookDetails() {
     return "";
   }
 
+  function hasImage(book) {
+    if (book.image) {
+      return book.image
+    }
+    return `../assets/BooksImages/${book.imgNum}.jpg`
+  }
   if (!book) return <h1>Loading...</h1>;
 
   return (
@@ -69,30 +76,28 @@ export function BookDetails() {
       <h1 className="book-title fly">{book.title}</h1>
       <div className="book-info">
         <div>
-          <h3>Subtitle: {book.subtitle}</h3>
+
           <h3>Authors: {book.authors.join(", ")}</h3>
-          <h3>
+          {/* <h3>
             Publish Year: {book.publishedDate.substring(0, 4)}{" "}
             <span className="span">{checkDate()}</span>
-          </h3>
+          </h3> */}
 
           <h3>Categories: {book.categories.join(", ")}</h3>
           <h3>Page Count: {book.pageCount} <span className="span">{book.pageCount > 500 ? 'Serious Reading ' : book.pageCount > 200 ? 'Decent Reading' : book.PageCount < 100 ? ' Light Reading' : ''}</span></h3>
           <h3>Language: {book.language}</h3>
+          <h3>Subtitle: {book.subtitle}</h3>
           <h2>
             Price: {book.listPrice.amount}
             {book.listPrice.currencyCode}
           </h2>
           {book.listPrice.isOnSale && <h2 className="red fly">ON SALE!</h2>}
-          <LongTxt txt={book.description} length={20} />
+          descreption: <LongTxt txt={book.description} length={20} />
         </div>
         {/* <img src={`https://picsum.photos/id/${book.imgNum + 33}/200/300`} alt={book.title} className="book-img" /> */}
 
-        <img
-          src={`../assets/BooksImages/${book.imgNum}.jpg`}
-          alt="Book cover"
+        <img src={hasImage(book)} alt={book.title} className="book-img" />
 
-        />
 
         <div className="btn-flex">
           <Link to={`/book/bookdetails/${book.prevbookId}`}>Previous Book</Link>

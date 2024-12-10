@@ -1,6 +1,8 @@
 const { useState, useEffect } = React;
 const { useNavigate, Link, useParams } = ReactRouterDOM;
 import { bookService } from "../services/book.service.js";
+import { showErrorMsg, showSuccessMsg } from "../services/event-bus.service.js"
+
 
 export function BookEdit() {
   const [book, setBook] = useState(bookService.getEmptyBook);
@@ -42,7 +44,10 @@ export function BookEdit() {
       categories: book.categories.split(",").map((category) => category.trim()),
     };
 
-    bookService.save(fullBook).then(() => navigate("/book"));
+    bookService.save(fullBook).then(() => {
+      navigate("/book")
+      showSuccessMsg('book was edited successfully')
+    })
   }
 
   function loadBook(bookid) {
@@ -56,7 +61,10 @@ export function BookEdit() {
           currencyCode: "EUR",
           isOnSale: false,
         },
-      });
+      })
+      showSuccessMsg('loaded the book')
+    }).catch(() => {
+      showErrorMsg('failed to load book')
     });
   }
 

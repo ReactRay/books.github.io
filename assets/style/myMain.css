@@ -283,7 +283,9 @@ body {
   padding: 5px 10px;
   font-weight: 800;
   font-family: cursive;
-  margin: 3px 4px;
+
+
+
 
 }
 
@@ -373,6 +375,8 @@ input {
 
 .book-box {
   padding: 20px;
+  height: 100%;
+
   text-align: center;
   background-color: var(--light);
   color: var(--espresso);
@@ -380,7 +384,6 @@ input {
   line-height: 2rem;
   font-size: 25px;
   box-shadow: 2px 2px 20px var(--light);
-
   transition: all 1s;
 
 }
@@ -497,6 +500,11 @@ input {
 
 .btn-box {
   text-align: center;
+  display: flex;
+  flex-direction: column;
+
+  gap: 2px;
+
 }
 
 .btn-link {
@@ -688,8 +696,8 @@ input {
   flex-direction: column;
   padding: 10px;
   margin: 0.5rem;
-  min-width: 100px;
-  max-width: 350px;
+  min-width: 200px;
+  max-width: 450px;
   border-radius: 0.5rem;
   background-color: #f1f1f1;
   box-shadow: 2px 2px 5px 0 rgba(0, 0, 0, 0.1);
@@ -698,7 +706,7 @@ input {
 }
 
 .success {
-  background-color: lightgreen;
+  background-color: #A7D477
 }
 
 .error {
@@ -715,4 +723,67 @@ input {
 .close-btn:hover {
   background-color: var(--turk);
   color: var(--nes)
+}
+
+.google-container {
+  background-color: var(--turk);
+  padding: 20px;
+  margin-bottom: 20px;
+  border-radius: 10px;
+  width: 90%;
+  box-shadow: 4px 4px 10px var(--turk);
+}
+
+.google-container button {
+  padding: 5px 6px;
+  border: none;
+  border-radius: 10px;
+  background-color: var(--light);
+  color: var(--turk);
+  font-weight: 900;
+}
+
+.google-container button:hover {
+  background-color: var(--espresso);
+
+
+}
+
+.google-books {
+  list-style: none;
+  background-color: var(--light);
+  color: var(--espresso);
+  padding: 10px;
+  border-radius: 10px;
+  margin-top: 10px;
+  box-shadow: 4px 4px 10px var(--light);
+}
+
+
+
+.google-books li {
+  border-bottom: #333 1px solid;
+  padding: 10px;
+  font-size: 1rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+.google-books button {
+  padding: 5px 6px;
+  border: none;
+  border-radius: 10px;
+  background-color: var(--turk);
+  color: var(--light);
+  font-weight: 900;
+}
+
+.google-books button:hover {
+  background-color: var(--espresso);
+  color: var(--turk);
+}
+
+.google-books li:hover {
+  background-color: var(--turk);
+  color: var(--nes);
 }

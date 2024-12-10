@@ -4,6 +4,7 @@ export const storageService = {
   post,
   put,
   remove,
+  post2,
 }
 
 function query(entityType, delay = 200) {
@@ -25,6 +26,14 @@ function get(entityType, entityId) {
 function post(entityType, newEntity) {
   newEntity = { ...newEntity }
   newEntity.id = _makeId()
+  return query(entityType).then((entities) => {
+    entities.unshift(newEntity)
+    _save(entityType, entities)
+    return newEntity
+  })
+}
+function post2(entityType, newEntity) {
+  newEntity = { ...newEntity }
   return query(entityType).then((entities) => {
     entities.unshift(newEntity)
     _save(entityType, entities)

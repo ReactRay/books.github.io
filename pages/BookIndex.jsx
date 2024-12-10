@@ -5,6 +5,9 @@ import { Filter } from '../cmps/Filter.jsx'
 import { BookList } from '../cmps/BookList.jsx'
 import { bookService } from '../services/book.service.js'
 import { getTruthyValues } from '../services/util.service.js'
+import { showErrorMsg, showSuccessMsg } from "../services/event-bus.service.js"
+import { GoogleBook } from '../cmps/GoogleBook.jsx'
+
 
 export function BookIndex() {
   const [searchParams, setSearchParams] = useSearchParams()
@@ -21,13 +24,32 @@ export function BookIndex() {
   }
 
   function loadBooks() {
-    bookService.query(filterBy).then(setBooks);
+    bookService.query(filterBy).then(books => {
+      setBooks(books)
+      showSuccessMsg('loaded succesfully')
+    }).catch(() => {
+      showErrorMsg('failed to load books')
+    }
+
+    );
+  }
+
+  function addGoogleBook(book) {
+    setBooks((prev) => [book, ...prev])
   }
 
   function removeBook(bookId) {
     bookService
       .remove(bookId)
-      .then(() => setBooks((prev) => prev.filter((book) => book.id !== bookId)))
+      .then(() => {
+        setBooks((prev) => prev.filter((book) => book.id !== bookId))
+        showSuccessMsg('book deleted successfully')
+      }).catch(() => {
+        console.log('something went wrong')
+        showErrorMsg('failed to delete book')
+      }
+
+      )
   }
 
   console.log(books);
@@ -36,8 +58,9 @@ export function BookIndex() {
   if (!books.length) return <div>Loding books</div>
   return (
     <div >
-
       <Filter filterBy={filterBy} onFilter={handleFilterChange} />
+      <GoogleBook bookService={bookService} addBook={addGoogleBook} />
+
       <BookList books={books} removeBook={removeBook} />
     </div>
   );

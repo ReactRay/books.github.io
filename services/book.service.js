@@ -11,6 +11,8 @@ export const bookService = {
   getEmptyBook,
   getDefaultFilter,
   getFilterFromSrcParams,
+  post,
+  post2,
 }
 
 const dummyBooks = [
@@ -268,6 +270,13 @@ function save(book) {
   } else {
     return storageService.post(BOOK_KEY, book)
   }
+}
+
+function post(book) {
+  if (book) return storageService.post(BOOK_KEY, book)
+}
+function post2(book) {
+  if (book) return storageService.post2(BOOK_KEY, book)
 }
 
 function getEmptyBook() {

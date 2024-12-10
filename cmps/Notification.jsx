@@ -5,7 +5,7 @@ const { useState, useEffect } = React
 
 export function Notification() {
 
-    const [msg, setMsg] = useState({ txt: 'hi', type: 'error' })
+    const [msg, setMsg] = useState(null)
 
     useEffect(() => {
         const unsubscribe = eventBusService.on('show-user-msg', msg => {
