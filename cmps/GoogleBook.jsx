@@ -6,10 +6,8 @@ export function GoogleBook({ bookService, addBook }) {
     const [input, setInput] = useState('');
     const [books, setBooks] = useState([]);
 
-    // Creating the debounced version of handleChange
     const debouncedSearch = useRef(debounce(handleChange, 1200)).current;
 
-    // Handle adding a book
     function handleAddBook(book) {
         const newBook = {
             id: book.id,
@@ -23,9 +21,9 @@ export function GoogleBook({ bookService, addBook }) {
             pageCount: book.volumeInfo.pageCount,
             subtitle: book.volumeInfo.subtitle || ' books from google dont have that so here is some random test by silly Radwan :D',
             listPrice: {
-                amount: (Math.random() * (30 - 5) + 5).toFixed(2), // Random price between 5 and 30
-                currencyCode: Math.random() < 0.5 ? 'EUR' : '$', // Random currency (EUR or $)
-                isOnSale: Math.random() < 0.5, // Random sale status (true or false)
+                amount: (Math.random() * (30 - 5) + 5).toFixed(2),
+                currencyCode: Math.random() < 0.5 ? 'EUR' : '$',
+                isOnSale: Math.random() < 0.5,
             },
         };
 
@@ -35,9 +33,9 @@ export function GoogleBook({ bookService, addBook }) {
         console.log(newBook);
     }
 
-    // Handle the search input change
+
     async function handleChange(input) {
-        if (!input) return; // Prevent API call for empty input
+        if (!input) return;
         const response = await fetch(
             `https://www.googleapis.com/books/v1/volumes?q=${input.replace(' ', '+')}&key=AIzaSyABKAw_tIhDuZxOe9kthccDWlEjy2oa8F0`
         );
@@ -53,13 +51,13 @@ export function GoogleBook({ bookService, addBook }) {
                 type="text"
                 value={input}
                 onChange={(e) => {
-                    setInput(e.target.value); // Update input state
-                    debouncedSearch(e.target.value); // Call debounced search
+                    setInput(e.target.value);
+                    debouncedSearch(e.target.value);
                 }}
                 placeholder="Search for books"
             />
 
-            {/* Display books */}
+
             {input && (
                 <ul className="google-books">
                     {books.length ? (
