@@ -15,7 +15,7 @@ export function GoogleBook({ addBook, allBooks }) {
     function handleAddBook(book) {
         bookService.checkIfExists(book, allBooks).then((exists) => {
             if (!exists) {
-                showErrorMsg('book already exist');
+                showErrorMsg('you cant add book');
             } else {
                 bookService.post2(book).then(() => {
                     addBook(book); // function from father state (index)
@@ -47,24 +47,26 @@ export function GoogleBook({ addBook, allBooks }) {
 
     return (
         <div className="container google-container">
-            <h2> Google things happen here ⬇️</h2>
-            <input
-                type="text"
-                // value={input}
-                onChange={(e) => {
-                    // setInput(e.target.value);
-                    debouncedSearch(e.target.value);
-                }}
-                placeholder="Search for books"
+            <form >
+                <h2> Google things happen here ⬇️</h2>
+                <input
+                    type="text"
+                    // value={input}
+                    onChange={(e) => {
+                        // setInput(e.target.value);
+                        debouncedSearch(e.target.value);
+                    }}
+                    placeholder="Search for books"
+                    className="google-input"
+                />
+            </form>
 
-            />
-
-
-            {books.length && (
+            {books && (
                 <ul className="google-books">
                     {books.length ? (
                         books.map((book) => (
                             <li className="googleBook-item" key={book.id}>
+                                <img src={`${book.image}`} alt="" className="google-image" />
                                 <strong>{book.title}</strong>
                                 <button onClick={() => handleAddBook(book)}>Add Book</button>
                             </li>

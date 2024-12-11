@@ -290,27 +290,30 @@ async function getBooksFromGoogle(bookTitle) {
 }
 
 function _formatGoogleBooks(googleBooks) {
+  console.log(googleBooks)
   return googleBooks.map((book) => {
-    const googleBook = {
-      id: book.id,
-      title: book.volumeInfo.title,
-      authors: book.volumeInfo.authors || ['no author'],
-      image: book.volumeInfo.imageLinks.thumbnail,
-      description: book.volumeInfo.description || 'no desc',
-      categories: book.volumeInfo.categories || ['no category'],
+    const volumeInfo = book.volumeInfo || {}
+    const imageLinks = volumeInfo.imageLinks || {}
+
+    return {
+      id: book.id || utilService.makeId(),
+      title: volumeInfo.title || 'Untitled',
+      authors: volumeInfo.authors || ['No Author'],
+      image: imageLinks.thumbnail || 'default-thumbnail-url.jpg',
+      description: volumeInfo.description || 'No description available',
+      categories: volumeInfo.categories || ['No Category'],
       imgNum: Math.floor(Math.random() * 20) + 1,
-      language: book.volumeInfo.language || 'en',
-      pageCount: book.volumeInfo.pageCount,
+      language: volumeInfo.language || 'en',
+      pageCount: volumeInfo.pageCount || 0,
       subtitle:
-        book.volumeInfo.subtitle ||
-        ' books from google dont have that so here is some random test by silly Radwan :D',
+        volumeInfo.subtitle ||
+        'Books from Google often lack a subtitle, so here is a placeholder text by silly Radwan :D',
       listPrice: {
-        amount: (Math.random() * (30 - 5) + 5).toFixed(2), // random price
-        currencyCode: Math.random() < 0.5 ? 'EUR' : '$', // TODO add more currency
-        isOnSale: Math.random() < 0.5, // is fine
+        amount: parseFloat((Math.random() * (30 - 5) + 5).toFixed(2)),
+        currencyCode: Math.random() < 0.5 ? 'EUR' : '$',
+        isOnSale: Math.random() < 0.5,
       },
     }
-    return googleBook
   })
 }
 

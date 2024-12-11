@@ -221,7 +221,7 @@ body {
 
 
 .book-img {
-  width: 70%;
+  width: 70;
   box-shadow: 4px 4px 20px var(--light);
   margin-left: 120px;
   border-radius: 8px;
@@ -807,4 +807,8 @@ input {
   font-size: 15px;
   font-weight: 900;
   border-radius: 8;
+}
+
+.google-image {
+  height: 5rem;
 }
