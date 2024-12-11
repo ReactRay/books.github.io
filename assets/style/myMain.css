@@ -91,7 +91,7 @@ body {
 }
 
 .long-txt {
-  color: var(--espresso);
+  color: var(--nes);
   cursor: pointer;
   margin-left: 5px;
 }
@@ -289,6 +289,9 @@ body {
 
 }
 
+.bright {
+  color: yellow;
+}
 
 
 .filter-btn {

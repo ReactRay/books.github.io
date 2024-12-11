@@ -44,6 +44,7 @@ export function Filter({ filterBy, onFilter }) {
                         value={filter.title || ''}
                         onChange={handleInputChange}
                     />
+
                 </div>
                 <div>
                     <label>Min Price:</label>
