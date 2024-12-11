@@ -20,12 +20,12 @@ export function BookPreview({ book, removeBook, imgNum }) {
         <h5 className="font"> {book.title}</h5>
         <h5><LongTxt txt={book.description} /></h5>
         <h5>
-          <span className="price">
+          <span className="price" style={{ color: `${book.listPrice.amount > 15 ? 'red' : 'green'}` }}>
             {book.listPrice && book.listPrice.amount}{book.listPrice && book.listPrice.currencyCode}
           </span>
         </h5>
         {/* <img src={`https://picsum.photos/id/${book.imgNum + 33}/200/300`} alt={book.title} className="book-img" /> */}
-        <img src={hasImage(book)} alt={book.title} className="book-img" />
+        <img src={hasImage(book)} alt={book.title} />
         {book.listPrice.isOnSale && <h4 className="red">ON SALE!</h4>}
 
       </div>

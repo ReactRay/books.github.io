@@ -88,8 +88,9 @@ export function BookDetails() {
           <h3>Language: {book.language}</h3>
           <h3>Subtitle: {book.subtitle}</h3>
           <h2>
-            Price: {book.listPrice.amount}
-            {book.listPrice.currencyCode}
+            Price: <span style={{ color: `${book.listPrice.amount > 15 ? 'red' : 'green'}` }}>{book.listPrice.amount}
+              {book.listPrice.currencyCode}
+            </span>
           </h2>
           {book.listPrice.isOnSale && <h2 className="red fly">ON SALE!</h2>}
           descreption: <LongTxt txt={book.description} length={20} />

@@ -19,8 +19,8 @@ export function ReviewsForm({ addToReviews, bookId }) {
     return (
         <div className="review-form" >
             <h2>please select which type of review you would like to submit</h2>
-            <form>
-                <select value={review.type} onChange={(e) => setReview((prev) => ({ ...prev, type: e.target.value }))}>
+            <form className="select-form">
+                <select className={'select'} value={review.type} onChange={(e) => setReview((prev) => ({ ...prev, type: e.target.value }))}>
                     <option value='text'>text</option>
                     <option value="star">stars</option>
                 </select>
@@ -35,14 +35,14 @@ export function ReviewsForm({ addToReviews, bookId }) {
 function DynamicCmp(props) {
     if (props.review.type === 'text')
         return <TextReview {...props} />
-    else if (props.review.type === 'star')
+    if (props.review.type === 'star')
         return <StarReview {...props} />
 }
 
 function TextReview({ review, handleSubmit, setReview }) {
     return (
-        <div>
-            <form className="" onSubmit={handleSubmit}>
+        <div style={{ fontSize: '20px' }}>
+            <form className="star-flex" onSubmit={handleSubmit}>
                 <div>
                     <label>your name:</label>
                     <input
@@ -65,11 +65,14 @@ function TextReview({ review, handleSubmit, setReview }) {
                     />
 
                 </div>
-                <button>submit your review</button>
+
+                <button style={{ fontSize: '20px' }}>submit your review</button>
             </form>
         </div>
     )
 }
+
+
 //        <i class="fa fa-star"></i>
 function StarReview({ review, handleSubmit, setReview }) {
     const [starNumber, setStarNumber] = useState(0);
@@ -77,9 +80,12 @@ function StarReview({ review, handleSubmit, setReview }) {
         setReview((prev) => ({ ...prev, review: starNumber }))
     }, [starNumber])
     return (
-        <div>
-            <label>Your name:</label>
-            <input type="text" value={review.user} onChange={(e) => setReview(prev => ({ ...prev, user: e.target.value }))} />
+        <div className="star-flex">
+            <div className="user-name">
+
+                <label>Your name:</label>
+                <input type="text" value={review.user} onChange={(e) => setReview(prev => ({ ...prev, user: e.target.value }))} />
+            </div>
 
             <div className="stars">
                 {[1, 2, 3, 4, 5].map((star, idx) => {
@@ -95,7 +101,7 @@ function StarReview({ review, handleSubmit, setReview }) {
                     );
                 })}
             </div>
-            <button onClick={handleSubmit}>submit review</button>
+            <button onClick={handleSubmit} style={{ fontSize: '20px' }}>submit review</button>
         </div >
     );
 }

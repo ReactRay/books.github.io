@@ -221,8 +221,10 @@ body {
 
 
 .book-img {
-  width: 100px;
-  height: 150px;
+  width: 70%;
+  box-shadow: 4px 4px 20px var(--light);
+  margin-left: 120px;
+  border-radius: 8px;
 }
 
 .book-info {
@@ -784,4 +786,25 @@ input {
 .google-books li:hover {
   background-color: var(--turk);
   color: var(--nes);
+}
+
+.star-flex {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  font-size: 20px;
+  gap: 10px;
+}
+
+.stars {
+  font-size: 40px;
+}
+
+.select {
+  width: 200px;
+  padding: 10px;
+  margin: 20px auto;
+  text-align: center;
+  font-size: 15px;
+  font-weight: 900;
+  border-radius: 8;
 }

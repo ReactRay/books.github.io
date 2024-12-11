@@ -56,6 +56,7 @@ export function GoogleBook({ addBook, allBooks }) {
                     debouncedSearch(e.target.value);
                 }}
                 placeholder="Search for books"
+
             />
 
 
@@ -69,7 +70,7 @@ export function GoogleBook({ addBook, allBooks }) {
                             </li>
                         ))
                     ) : (
-                        <p>No books found or available for sale.</p>
+                        <p>no books</p>
                     )}
                 </ul>
             )}
