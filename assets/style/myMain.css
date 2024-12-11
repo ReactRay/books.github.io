@@ -200,15 +200,10 @@ body {
   background-color: var(--turk);
   text-align: center;
   box-shadow: 4px 5px 20px var(--turk);
-  transition: all 2s 0.5s;
-
-}
-
-.home-flex:hover {
-  transform: scale(0.9);
 
 
 }
+
 
 .home-box {
   padding: 20px;
@@ -218,7 +213,7 @@ body {
 }
 
 .home-box:hover {
-  transform: scale(1.4);
+  transform: scale(1.1);
   box-shadow: 5px 4px 20px var(--turk);
   opacity: 0.85;
 }
@@ -399,9 +394,9 @@ input {
 }
 
 .book-box:hover {
-  transform: scale(1.2);
+  transform: scale(1.1);
   background-color: var(--light);
-  color: var(--espresso);
+  color: var(--turk);
   box-shadow: 10px 10px 40px var(--light);
   opacity: 0.8;
 

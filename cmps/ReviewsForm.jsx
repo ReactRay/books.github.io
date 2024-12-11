@@ -3,7 +3,9 @@ const { useState, useEffect } = React;
 
 
 export function ReviewsForm({ addToReviews, bookId }) {
-    const [review, setReview] = useState({ user: '', review: '', type: '', bookId });
+    const [review, setReview] = useState({ user: '', review: '', type: 'text', bookId });
+
+
 
     function handleSubmit(e) {
         e.preventDefault();
@@ -19,7 +21,6 @@ export function ReviewsForm({ addToReviews, bookId }) {
             <h2>please select which type of review you would like to submit</h2>
             <form>
                 <select value={review.type} onChange={(e) => setReview((prev) => ({ ...prev, type: e.target.value }))}>
-                    <option value={''}>hide</option>
                     <option value='text'>text</option>
                     <option value="star">stars</option>
                 </select>
@@ -31,11 +32,11 @@ export function ReviewsForm({ addToReviews, bookId }) {
     );
 }
 
-function DynamicCmp({ review, handleSubmit, setReview }) {
-    if (review.type === 'text')
-        return <TextReview review={review} handleSubmit={handleSubmit} setReview={setReview} />
-    else if (review.type === 'star')
-        return <StarReview review={review} handleSubmit={handleSubmit} setReview={setReview} />
+function DynamicCmp(props) {
+    if (props.review.type === 'text')
+        return <TextReview {...props} />
+    else if (props.review.type === 'star')
+        return <StarReview {...props} />
 }
 
 function TextReview({ review, handleSubmit, setReview }) {

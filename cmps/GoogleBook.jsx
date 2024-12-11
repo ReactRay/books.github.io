@@ -1,47 +1,48 @@
 const { useState, useRef } = React;
 import { debounce } from "../services/util.service.js";
+import { bookService } from "../services/book.service.js";
+import { showErrorMsg, showSuccessMsg } from "../services/event-bus.service.js"
 
 
-export function GoogleBook({ bookService, addBook }) {
-    const [input, setInput] = useState('');
+
+export function GoogleBook({ addBook, allBooks }) {
+    //   const [input, setInput] = useState('');
     const [books, setBooks] = useState([]);
+
 
     const debouncedSearch = useRef(debounce(handleChange, 1200)).current;
 
     function handleAddBook(book) {
-        const newBook = {
-            id: book.id,
-            title: book.volumeInfo.title,
-            authors: book.volumeInfo.authors || ['Unknown Author'],
-            image: book.volumeInfo.imageLinks.thumbnail,
-            description: book.volumeInfo.description || 'No description available.',
-            categories: book.volumeInfo.categories || ['Uncategorized'],
-            imgNum: Math.floor(Math.random() * 20) + 1,
-            language: book.volumeInfo.language || 'en',
-            pageCount: book.volumeInfo.pageCount,
-            subtitle: book.volumeInfo.subtitle || ' books from google dont have that so here is some random test by silly Radwan :D',
-            listPrice: {
-                amount: (Math.random() * (30 - 5) + 5).toFixed(2),
-                currencyCode: Math.random() < 0.5 ? 'EUR' : '$',
-                isOnSale: Math.random() < 0.5,
-            },
-        };
-
-        bookService.post2(newBook).then(() => addBook(newBook));
-
-        setInput('');
-        console.log(newBook);
+        bookService.checkIfExists(book, allBooks).then((exists) => {
+            if (!exists) {
+                showErrorMsg('book already exist');
+            } else {
+                bookService.post2(book).then(() => {
+                    addBook(book); // function from father state (index)
+                    console.log(book);
+                    showSuccessMsg('book was added');
+                });
+            }
+        }).catch(err => {
+            showErrorMsg('Error');
+            console.error(err);
+        });
     }
 
+    function handleChange(input) {
+        bookService.getBooksFromGoogle(input)
+            .then(books => {
+                console.log('from cmp:', books);
 
-    async function handleChange(input) {
-        if (!input) return;
-        const response = await fetch(
-            `https://www.googleapis.com/books/v1/volumes?q=${input.replace(' ', '+')}&key=AIzaSyABKAw_tIhDuZxOe9kthccDWlEjy2oa8F0`
-        );
-        const data = await response.json();
-        setBooks(data.items || []);
-        console.log(data.items);
+                setBooks(books || [])
+            })
+        // if (!input) return;
+        // const response = await fetch(
+        //     `https://www.googleapis.com/books/v1/volumes?q=${input.replace(' ', '+')}&key=AIzaSyABKAw_tIhDuZxOe9kthccDWlEjy2oa8F0`
+        // );
+        // const data = await response.json();
+        // setBooks(data.items || []);
+        // console.log(data.items);
     }
 
     return (
@@ -49,21 +50,21 @@ export function GoogleBook({ bookService, addBook }) {
             <h2> Google things happen here ⬇️</h2>
             <input
                 type="text"
-                value={input}
+                // value={input}
                 onChange={(e) => {
-                    setInput(e.target.value);
+                    // setInput(e.target.value);
                     debouncedSearch(e.target.value);
                 }}
                 placeholder="Search for books"
             />
 
 
-            {input && (
+            {books.length && (
                 <ul className="google-books">
                     {books.length ? (
                         books.map((book) => (
                             <li className="googleBook-item" key={book.id}>
-                                <strong>{book.volumeInfo.title}</strong>
+                                <strong>{book.title}</strong>
                                 <button onClick={() => handleAddBook(book)}>Add Book</button>
                             </li>
                         ))

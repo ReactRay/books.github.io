@@ -2,7 +2,8 @@ import { utilService } from './util.service.js'
 import { storageService } from './async-storage.service.js'
 
 const BOOK_KEY = 'bookDB'
-
+const GOOGLE_BOOK_KEY = 'googleBookDB'
+const gGoogleBooks = utilService.loadFromStorage(GOOGLE_BOOK_KEY) || []
 export const bookService = {
   query,
   get,
@@ -13,6 +14,8 @@ export const bookService = {
   getFilterFromSrcParams,
   post,
   post2,
+  getBooksFromGoogle,
+  checkIfExists,
 }
 
 const dummyBooks = [
@@ -355,4 +358,77 @@ function getFilterFromSrcParams(srcParams) {
     maxPrice: maxPrice ? +maxPrice : undefined,
     isOnSale: srcParams.has('isOnSale') ? isOnSale : undefined,
   }
+}
+
+/* async function handleChange(input) {
+        if (!input) return;
+        const response = await fetch(
+            `https://www.googleapis.com/books/v1/volumes?q=${input.replace(' ', '+')}&key=AIzaSyABKAw_tIhDuZxOe9kthccDWlEjy2oa8F0`
+        );
+        const data = await response.json();
+        setBooks(data.items || []);
+        console.log(data.items);
+    }
+*/
+
+async function getBooksFromGoogle(bookTitle) {
+  if (!bookTitle) return Promise.resolve()
+
+  /// cache
+  const googlBook = gGoogleBooks[bookTitle]
+  if (googlBook) {
+    console.log('books from storage')
+    return Promise.resolve(googlBook)
+  }
+
+  // fetch
+  const url = `https://www.googleapis.com/books/v1/volumes?q=${bookTitle.replace(
+    ' ',
+    '+'
+  )}&key=AIzaSyABKAw_tIhDuZxOe9kthccDWlEjy2oa8F0`
+  try {
+    const res = await fetch(url)
+    const data = await res.json()
+    console.log('books from network')
+
+    const books = _formatGoogleBooks(data.items)
+    gGoogleBooks[bookTitle] = books
+    utilService.saveToStorage(GOOGLE_BOOK_KEY, gGoogleBooks)
+    console.log(books)
+    return books
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+function _formatGoogleBooks(googleBooks) {
+  return googleBooks.map((book) => {
+    const googleBook = {
+      id: book.id,
+      title: book.volumeInfo.title,
+      authors: book.volumeInfo.authors || ['no author'],
+      image: book.volumeInfo.imageLinks.thumbnail,
+      description: book.volumeInfo.description || 'no desc',
+      categories: book.volumeInfo.categories || ['no category'],
+      imgNum: Math.floor(Math.random() * 20) + 1,
+      language: book.volumeInfo.language || 'en',
+      pageCount: book.volumeInfo.pageCount,
+      subtitle:
+        book.volumeInfo.subtitle ||
+        ' books from google dont have that so here is some random test by silly Radwan :D',
+      listPrice: {
+        amount: (Math.random() * (30 - 5) + 5).toFixed(2), // random price
+        currencyCode: Math.random() < 0.5 ? 'EUR' : '$', // TODO add more currency
+        isOnSale: Math.random() < 0.5, // is fine
+      },
+    }
+    return googleBook
+  })
+}
+
+async function checkIfExists(book, arr) {
+  for (let i = 0; i < arr.length; i++) {
+    if (book.id === arr[i].id) return false
+  }
+  return true
 }

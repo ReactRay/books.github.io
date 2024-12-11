@@ -52,15 +52,14 @@ export function BookIndex() {
       )
   }
 
-  console.log(books);
+  console.log('from index:', books);
 
 
   if (!books.length) return <div>Loding books</div>
   return (
     <div >
       <Filter filterBy={filterBy} onFilter={handleFilterChange} />
-      <GoogleBook bookService={bookService} addBook={addGoogleBook} />
-
+      <GoogleBook addBook={addGoogleBook} allBooks={books} />
       <BookList books={books} removeBook={removeBook} />
     </div>
   );
